@@ -1,0 +1,47 @@
+[
+  {
+    "repository": "langchain-ai/langgraph",
+    "url": "https://github.com/langchain-ai/langgraph",
+    "stars_observed": 44030,
+    "commit_observed": "eb8ec111b3e9d3108af5d7bdcac51e3e913637a0",
+    "observed_date": "2026-10-28",
+    "method": "GitHub repository HTML stargazerCount/currentOid; unauthenticated API was rate-limited",
+    "page_sha256": "e19ec5a689dc00ffca210b2845b9ab1400b5705a3f14cdff6ff93a6526301146"
+  },
+  {
+    "repository": "Polymarket/agents",
+    "url": "https://github.com/Polymarket/agents",
+    "stars_observed": 3804,
+    "commit_observed": "081f2b5594c37edeb9d3780a778c084d5b6f2743",
+    "observed_date": "2026-10-28",
+    "method": "GitHub repository HTML stargazerCount/currentOid; unauthenticated API was rate-limited",
+    "page_sha256": "d0b38dae2eb49a67afa41986353c10ef84fcbdde18ba3e82fa0add39edeed370"
+  },
+  {
+    "repository": "Polymarket/py-clob-client",
+    "url": "https://github.com/Polymarket/py-clob-client",
+    "stars_observed": 1223,
+    "commit_observed": "b076b04d61135657e25dccc1bbd6866a96bd8c6e",
+    "observed_date": "2026-10-28",
+    "method": "GitHub repository HTML stargazerCount/currentOid; unauthenticated API was rate-limited",
+    "page_sha256": "8fac6643df6915578b9d30d0f017bb396ab5d95c9c5055ca722dc8ffd864f4ae"
+  },
+  {
+    "repository": "promptfoo/promptfoo",
+    "url": "https://github.com/promptfoo/promptfoo",
+    "stars_observed": 26533,
+    "commit_observed": "e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb",
+    "observed_date": "2026-10-28",
+    "method": "GitHub repository HTML stargazerCount/currentOid; unauthenticated API was rate-limited",
+    "page_sha256": "280b26306305d9933ce494d13c06ab51e2b29077f753dc84e79108ef7922b82c"
+  },
+  {
+    "repository": "TauricResearch/TradingAgents",
+    "url": "https://github.com/TauricResearch/TradingAgents",
+    "stars_observed": 117542,
+    "commit_observed": "c4544913a14ed3df5f1ed7b9e8483270ce20682a",
+    "observed_date": "2026-10-28",
+    "method": "GitHub repository HTML stargazerCount/currentOid; unauthenticated API was rate-limited",
+    "page_sha256": "420e05428c2ef2faec0a529c132c9a4208ebdf4dd84fab39c9d9131572fa63e3"
+  }
+]
