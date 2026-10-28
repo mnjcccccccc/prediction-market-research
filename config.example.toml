@@ -1,0 +1,14 @@
+[analysis]
+min_polymarket_volume = 1000
+min_kalshi_volume = 100
+max_spread = 0.08
+min_probability = 0.02
+max_probability = 0.98
+jump_1h = 0.05
+jump_24h = 0.10
+rolling_volume_ratio = 3.0
+robust_z = 4.0
+max_snapshot_age_minutes = 30
+enable_fixed_jumps = true
+enable_robust_z = true
+enable_activity_surge = true
