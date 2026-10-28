@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "run_id": "b191cebdbbf4c3f8eebf",
+  "code_sha256": "c0af90f4d41a6610b59c9ccf040f70c680c8881c9cc1b6122f9142bea20a5005",
+  "files": {
+    "report.html": "0c5791aed30ca702c3914d73ddb4b4c9bf1723a1b8832c3ee6d0a0af7e8c695d",
+    "report.json": "300f270f9744a26ba62f88c41de7c97e5ef4f6d9afd9571ec1ccfc72d3170c17",
+    "report.md": "56acbf197abff4e62993871cdfc448ef55e9b9893c2ddd57f997a268b943fe6a",
+    "trace.jsonl": "d925d5f460ca854b81ef687d4abe536f212d20c2683dd340e091087bbf50da54"
+  },
+  "note": "Integrity checksum, not a signature or trusted timestamp."
+}

@@ -1,0 +1,2429 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction Market Research | ARTi Challenge</title><style>
+    :root{--ink:#202b29;--green:#225f50;--muted:#67736f;--line:#dce3df;--paper:#f5f7f3}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,sans-serif}
+    main{max-width:1120px;margin:auto;padding:42px 32px}header{border-top:4px solid var(--green);padding-top:24px}
+    .eyebrow,.venue,small{font-size:11px;letter-spacing:.12em;font-weight:700;color:var(--green)}
+    h1{font-size:clamp(32px,5vw,58px);line-height:1.12;letter-spacing:-.045em;margin:18px 0}
+    h1 span{color:var(--green)}.intro{max-width:710px;color:var(--muted);font-size:16px}
+    .meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:22px 0}
+    .mode{background:#e4ecdf;padding:5px 12px;font-size:11px;font-weight:750;letter-spacing:.06em;border-radius:3px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff;margin:28px 0}
+    .metric{padding:18px 22px;border-right:1px solid var(--line)}.metric:last-child{border:0}
+    .metric strong{display:block;font-size:32px;line-height:1.3}.metric span{color:var(--muted);font-size:12px}
+    .toolbar{display:flex;gap:12px;margin:24px 0 12px}input,select{font:inherit;padding:10px 12px;border:1px solid #c7d2cb;border-radius:4px;background:#fff;color:var(--ink)}
+    input{flex:1;min-width:130px}.market{border:1px solid var(--line);background:white;margin:14px 0;padding:25px;border-radius:6px}
+    .market-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}h2{font-size:19px;line-height:1.4;letter-spacing:-.015em;margin:5px 0}.id{font-size:11px;word-break:break-all}
+    .badge{font-size:10px;font-weight:800;letter-spacing:.09em;padding:4px 9px;border-radius:3px;white-space:nowrap}
+    .investigate{background:#f7e8ca;color:#805817}.monitor{background:#e2eee8;color:#225f50}.abstain{background:#eceeec;color:#68706d}
+    .numbers{display:grid;grid-template-columns:1fr 1fr 1.4fr;margin-top:18px;gap:20px}.numbers small{display:block;color:var(--muted);font-size:10px}
+    .numbers strong{font-size:29px;font-weight:650;letter-spacing:-.035em}.numbers .volume{font-size:23px}em{font-size:13px;font-style:normal;color:var(--muted);margin-left:4px}
+    .changes{font-size:12px;color:var(--green);font-family:ui-monospace,monospace}.muted{color:var(--muted)}
+    details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summary{cursor:pointer;color:var(--green);font-size:13px;font-weight:600}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}h3{font-size:13px}li{margin:6px 0;font-size:13px}
+    pre{background:#f2f5f1;padding:16px;overflow:auto;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:4px}
+    svg{max-width:740px;width:100%;margin-top:16px}svg text{font-size:10px;fill:#67736f}.grid{stroke:#dce3df;stroke-dasharray:3 3}
+    a{color:var(--green)}footer{padding:28px 0;color:var(--muted);font-size:12px}.empty{display:none;color:var(--muted);padding:30px;text-align:center}
+    @media(max-width:650px){main{padding:24px 14px}.metrics{grid-template-columns:1fr 1fr}.metric{border-bottom:1px solid var(--line)}.market{padding:18px}.toolbar{flex-wrap:wrap}.toolbar input{flex-basis:100%}.market-top{gap:8px}.numbers{grid-template-columns:1fr 1fr}.numbers>div:last-child{grid-column:span 2}.detail-grid{grid-template-columns:1fr}.meta{gap:8px}h2{font-size:17px}}
+    </style></head><body><main><header>
+    <div class="eyebrow">ARTi ENGINEERING CHALLENGE / RESEARCH PIPELINE</div>
+    <h1>Prediction markets.<br><span>Evidence before judgment.</span></h1>
+    <p class="intro">Public market data, time-matched probability changes and a risk-reviewed research queue.
+    Every decision traces back to explicit evidence. Open a market card to inspect its history.</p>
+    <div class="meta"><span class="mode">LIVE API CAPTURE · AS OF TIMESTAMP</span><span class="muted">As of 2026-10-28T08:50:23.924684+00:00</span></div></header>
+    <section class="metrics" aria-label="Research queue statistics">
+    <div class="metric"><strong>20</strong><span>reported markets</span></div>
+    <div class="metric"><strong>0</strong><span>investigate</span></div>
+    <div class="metric"><strong>20</strong><span>monitor</span></div>
+    <div class="metric"><strong>0</strong><span>abstain / excluded</span></div></section>
+    <div class="toolbar"><input id="search" aria-label="Search market title" placeholder="Search market title or ID…">
+    <select id="source" aria-label="Filter venue"><option value="">All venues</option><option>polymarket</option><option>kalshi</option></select>
+    <select id="action" aria-label="Filter decision"><option value="">All decisions</option><option>investigate</option><option>monitor</option><option>abstain</option></select></div>
+    <p class="muted" style="font-size:12px">Sorted by eligibility, then research priority. Volume retains each venue’s native unit.</p>
+    <section id="markets"><article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Democratic Party control the Senate after the 2026 Midterm elections?</h2><span class="muted id">562793</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>66.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>74.5<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">425,568 usd</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual) · exchange-native basis; see evidence</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Exchange-native history · clob_reported_yes_price</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,60.50 41.14,60.50 42.32,60.50 43.44,60.50 44.59,60.50 45.73,60.50 46.88,60.50 48.02,60.50 49.17,60.50 50.32,60.50 51.47,60.50 52.61,60.50 53.81,60.50 54.90,60.50 56.05,60.50 57.28,60.50 58.34,60.50 59.49,60.50 60.63,60.50 61.77,60.50 62.92,60.50 64.07,60.50 65.22,60.50 66.36,60.50 67.52,60.50 68.66,60.50 69.81,60.50 70.93,60.50 72.10,60.50 73.24,60.50 74.39,60.50 75.54,60.50 76.68,60.50 77.83,60.50 78.98,60.50 80.12,60.50 81.24,60.50 82.41,60.50 83.59,60.50 84.70,60.50 85.85,60.50 87.00,60.50 88.14,60.50 89.28,60.50 90.43,60.50 91.58,60.50 92.73,60.50 93.88,60.50 95.01,60.50 96.16,60.50 97.32,60.50 98.46,60.50 99.61,60.50 100.75,60.50 101.95,60.50 103.05,60.50 104.17,60.50 105.34,60.50 106.51,60.50 107.63,60.50 108.77,60.50 109.92,60.50 111.07,60.50 112.21,60.50 113.36,60.50 114.50,60.50 115.65,60.50 116.80,60.50 117.95,60.50 119.09,60.50 120.24,60.50 121.39,60.50 122.53,60.50 123.67,60.50 124.85,60.50 125.99,60.50 127.12,60.50 128.27,60.50 129.43,60.50 130.56,60.50 131.71,60.50 132.85,60.50 133.99,60.50 135.14,60.50 136.29,60.50 137.43,60.50 138.58,60.50 139.78,60.50 140.88,60.50 142.08,60.50 143.20,60.50 144.31,60.50 145.50,60.50 146.63,60.50 147.75,60.50 148.90,60.50 150.04,60.50 151.18,60.50 152.36,60.50 153.48,60.50 154.63,60.50 155.77,60.50 156.92,60.50 158.06,60.50 159.21,60.50 160.33,60.50 161.50,60.50 162.65,60.50 163.80,60.50 164.94,60.50 166.19,60.50 167.23,60.50 168.38,60.50 169.52,60.50 170.67,60.50 171.82,60.50 172.97,60.50 174.11,60.50 175.26,60.50 176.40,60.50 177.55,60.50 178.69,60.50 179.85,60.50 181.01,60.50 182.14,60.50 183.28,60.50 184.43,60.50 185.57,60.50 186.73,60.50 187.87,60.50 189.01,60.50 190.16,60.50 191.31,60.50 192.45,60.50 193.60,60.50 194.77,60.50 195.89,60.50 197.04,59.50 198.18,59.50 199.33,59.50 200.48,59.50 201.63,59.50 202.77,59.50 203.91,59.50 205.12,59.50 206.21,59.50 207.40,59.50 208.50,59.50 209.65,59.50 210.79,59.50 211.94,59.50 213.08,59.50 214.21,59.00 215.44,59.50 216.58,59.50 217.67,59.50 218.81,59.50 219.96,59.50 221.17,59.50 222.27,59.50 223.40,59.50 224.55,59.50 225.75,59.50 226.84,59.50 228.00,59.50 229.13,59.50 230.29,59.50 231.43,59.50 232.61,59.50 233.72,59.50 234.89,59.50 236.02,59.50 237.17,59.50 238.33,59.50 239.45,59.50 240.60,59.50 241.75,59.50 242.89,59.50 244.04,59.50 245.18,59.50 246.33,59.50 247.48,59.50 248.74,59.50 249.76,59.50 252.06,59.50 254.29,59.50 254.44,59.50 256.65,59.50 256.72,59.50 257.89,59.50 260.06,59.50 263.52,59.50 264.67,59.50 265.79,59.50 266.96,59.50 269.25,59.50 270.37,59.50 271.59,59.50 272.75,59.50 273.88,59.50 275.02,59.50 276.11,59.50 277.28,59.50 279.53,59.50 279.68,59.50 280.71,59.50 281.86,59.50 283.01,59.50 284.13,59.50 285.35,59.50 286.47,59.50 288.76,59.50 289.91,59.50 291.03,59.50 292.18,59.50 293.32,59.50 294.47,59.50 295.62,59.50 296.77,59.50 297.91,59.50 299.05,59.50 300.20,59.50 301.35,59.50 302.51,59.50 303.72,59.50 304.79,59.50 305.93,59.50 307.08,59.50 308.23,59.50 309.37,59.50 310.52,59.50 311.66,59.50 312.81,59.50 313.96,59.50 315.15,59.50 316.29,59.50 317.40,59.50 318.54,59.50 319.69,59.50 320.83,59.50 321.98,59.50 323.12,59.50 324.28,59.50 325.42,59.50 326.56,59.50 327.71,59.50 328.83,59.50 330.01,59.50 331.17,59.50 332.29,58.50 333.44,58.50 334.58,58.50 335.73,58.50 336.87,58.50 338.00,58.50 339.17,58.50 340.36,58.50 341.46,58.50 342.61,58.50 343.75,58.50 344.90,58.50 346.05,58.50 347.20,58.50 348.34,58.50 349.53,58.50 350.63,58.50 351.78,58.50 352.92,58.50 354.13,58.50 355.22,58.50 356.37,58.50 357.51,58.50 358.68,58.50 359.80,58.50 360.95,58.50 362.09,58.50 363.24,58.50 364.37,58.50 365.54,58.50 366.65,58.50 367.83,58.50 368.97,58.50 370.12,58.50 371.27,58.50 372.44,58.50 373.56,58.50 374.76,58.50 375.85,58.50 377.02,58.50 378.14,58.50 379.33,58.50 380.43,58.50 381.58,58.50 382.73,58.50 383.88,58.50 385.04,58.50 386.15,58.50 387.31,58.50 388.48,58.50 391.89,58.50 393.05,58.50 394.19,58.50 395.34,58.50 396.48,58.50 397.63,58.50 398.77,58.50 399.93,58.50 401.06,58.50 402.22,58.50 403.46,58.50 404.53,58.50 405.71,59.50 406.81,59.50 407.97,59.50 409.10,59.50 410.24,59.50 411.38,59.50 412.50,59.50 413.77,59.50 414.86,59.50 415.99,59.50 417.11,59.50 418.26,59.50 419.41,59.50 420.56,59.50 421.70,59.50 422.85,59.50 423.99,59.50 425.18,59.50 426.28,59.50 427.50,59.50 428.58,59.50 429.72,59.50 430.87,59.50 432.02,59.50 433.16,59.50 434.31,59.50 435.46,59.50 436.60,59.50 437.72,59.50 438.89,59.50 440.04,59.50 441.29,59.50 442.34,59.50 443.48,59.50 444.65,59.50 445.77,59.50 446.93,59.50 448.11,59.50 449.21,59.50 450.36,59.50 451.50,59.50 452.65,59.50 453.79,59.50 454.97,59.50 456.13,59.50 457.23,59.50 458.38,59.50 459.52,59.50 460.67,59.50 461.87,59.50 463.01,59.50 464.11,59.50 465.31,59.50 466.40,59.50 467.55,59.50 468.72,59.50 469.86,59.50 471.01,59.50 472.13,59.50 473.28,59.50 474.43,59.50 475.58,59.50 476.72,59.50 477.87,59.50 479.01,59.50 480.18,59.50 481.30,59.50 482.46,59.50 483.60,59.50 484.75,59.50 485.89,59.50 487.04,59.50 488.19,59.50 489.34,59.50 491.62,59.50 492.69,59.50 493.91,59.50 495.06,59.50 497.32,59.50 499.65,59.50 500.71,59.50 500.84,59.50 502.07,59.50 503.12,59.50 504.26,59.50 506.56,59.50 508.84,59.50 509.97,59.50 511.08,59.50 514.53,59.50 517.96,58.50 519.14,58.50 524.90,58.50 530.52,58.50 531.72,58.50 532.87,58.50 534.11,58.50 535.15,58.50 536.33,58.50 537.51,58.50 538.54,58.50 538.65,58.50 539.77,58.50 540.91,58.50 542.08,58.50 543.20,58.50 544.39,58.50 545.50,58.50 546.64,58.50 547.86,58.50 548.97,58.50 550.10,58.50 551.27,58.50 552.39,58.50 553.52,58.50 554.66,58.50 555.79,58.50 556.93,58.50 558.12,58.50 559.25,58.50 560.37,58.50 561.59,59.50 562.69,59.50 563.84,59.50 564.99,59.50 566.12,59.50 567.27,59.50 568.42,59.50 569.56,58.50 570.71,58.50 571.94,58.50 573.00,58.50 574.16,58.50 575.36,58.50 576.42,57.50 577.59,57.50 578.79,57.50 579.88,58.50 581.03,58.50 582.17,58.50 584.44,58.50 585.61,58.50 586.75,58.50 587.90,58.50 589.05,58.50 590.25,58.50 591.34,58.50 592.49,58.50 593.66,58.50 595.95,58.50 598.22,58.50 599.37,58.50 600.51,58.50 601.66,58.50 602.83,58.50 604.05,58.50 605.10,58.50 607.41,59.50 609.69,58.50 614.27,58.50 616.64,58.50 617.70,58.50 618.85,58.50 620.07,58.50 621.20,58.50 622.29,58.50 623.44,58.50 624.58,58.50 625.72,58.50 626.87,58.50 628.02,58.50 629.17,58.50 630.31,58.50 631.43,58.50 632.66,58.50 633.79,58.50 634.90,58.50 636.04,58.50 637.19,58.50 638.34,58.50 639.53,58.50 640.63,58.50 641.83,58.50 642.92,58.50 644.08,58.50 645.21,58.50 646.36,58.50 647.51,58.50 648.65,58.50 649.80,58.50 650.95,58.50 652.09,58.50 653.24,58.50 654.38,58.50 655.53,58.50 656.68,58.50 657.82,58.50 658.97,58.50 660.11,58.50 661.29,58.50 662.40,58.50 663.60,58.50 664.70,58.50 665.82,58.50 666.99,58.50 668.14,58.50 669.28,58.50 670.43,58.50 671.57,58.50 672.72,58.50 673.87,58.50 675.07,58.50 676.16,58.50 677.31,58.50 678.48,58.50 679.60,58.50 680.74,58.50 681.89,58.50 683.04,58.50 684.19,58.50 685.33,58.50 686.45,58.50 687.62,58.50 688.77,58.50 689.96,58.50 691.07,58.50 692.21,58.50 693.35,58.50 694.51,58.50 695.65,58.50 696.77,58.50 697.94,58.50 699.13,58.50 700.00,58.50" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-26 08:50 UTC</text>
+      <text x="580" y="150">10-28 08:49 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.05 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.665,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 425567.5121569996,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 74.5,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.665,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 425567.5121569996,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_native_history&quot;: {
+    &quot;available&quot;: true,
+    &quot;point_count&quot;: 47,
+    &quot;raw_point_count&quot;: 545,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;received_at&quot;: &quot;2026-10-28T08:50:20.574495+00:00&quot;,
+    &quot;endpoint&quot;: &quot;https://clob.polymarket.com/prices-history&quot;,
+    &quot;issues&quot;: [],
+    &quot;note&quot;: &quot;Native series reconstructed at received_at; historical rule versions and contemporaneous availability are not established.&quot;,
+    &quot;sampling&quot;: &quot;Actual samples at/before completed UTC hour boundaries, within 10 min; no interpolation.&quot;,
+    &quot;latest_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;latest_age_minutes&quot;: 54.933
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 1.0003,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T06:55:21+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.665,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;current_probability&quot;: 0.665
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 24.0003,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T07:55:21+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.665,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;current_probability&quot;: 0.665
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 44,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 74.5,
+    &quot;activity_component&quot;: 0.9382,
+    &quot;entropy_component&quot;: 0.92,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>2026 Balance of Power: D Senate, D House</h2><span class="muted id">562828</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>65.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>73.8<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">294,189 usd</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual) · exchange-native basis; see evidence</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Exchange-native history · clob_reported_yes_price</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,60.50 41.15,60.50 42.32,60.50 43.44,60.50 44.59,60.50 45.73,60.50 46.88,60.50 48.02,60.50 49.17,60.50 50.32,60.50 51.47,60.50 52.61,60.50 53.81,60.50 54.90,60.50 56.05,60.50 57.29,60.50 58.34,60.50 59.49,60.50 60.63,60.50 61.78,59.50 62.93,59.50 64.07,59.50 65.22,59.50 66.36,59.50 67.52,59.50 68.66,59.50 69.81,59.50 70.93,59.50 72.10,59.50 73.24,59.50 74.39,59.50 75.54,59.50 76.68,59.50 77.83,59.50 78.98,59.50 80.12,59.50 81.24,59.50 82.41,59.50 83.59,59.50 84.70,59.50 85.85,59.50 87.00,59.50 88.14,59.50 89.29,59.50 90.43,59.50 91.58,59.50 92.73,59.50 93.88,59.50 95.01,59.50 96.16,59.50 97.32,59.50 98.46,59.50 99.61,59.50 100.75,59.50 101.95,59.50 103.05,59.50 104.17,59.50 105.34,59.50 106.51,59.50 107.63,59.50 108.77,59.50 109.92,59.50 111.07,59.50 112.21,59.50 113.36,59.50 114.50,59.50 115.65,59.50 116.80,59.50 117.95,59.50 119.09,59.50 120.24,59.50 121.39,59.50 122.53,59.50 123.67,59.50 124.85,59.50 125.99,59.50 127.12,59.50 128.27,59.50 129.43,59.50 130.56,59.50 131.71,59.50 132.85,59.50 133.99,59.50 135.14,59.50 136.29,59.50 137.43,59.50 138.58,59.50 139.78,59.50 140.88,59.50 142.08,59.50 143.20,59.50 144.31,59.50 145.50,59.50 146.63,59.50 147.75,59.50 148.90,59.50 150.04,59.50 151.18,59.50 152.36,59.50 153.48,59.50 154.63,59.50 155.77,59.50 156.92,59.50 158.07,59.50 159.22,59.50 160.33,59.50 161.50,59.50 162.65,59.50 163.80,59.50 164.94,59.50 166.19,59.50 167.23,59.50 168.38,59.50 169.52,59.50 170.67,59.50 171.82,59.50 172.97,59.50 174.12,59.50 175.26,59.50 176.40,59.50 177.55,59.50 178.69,59.50 179.85,59.50 181.01,59.50 182.14,59.50 183.28,59.50 184.43,59.50 185.57,59.50 186.73,59.50 187.87,59.50 189.02,59.50 190.16,59.50 191.31,59.50 192.45,59.50 193.60,59.50 194.77,59.50 195.89,59.50 197.04,59.50 198.18,59.50 199.33,59.50 200.48,59.50 201.63,59.50 202.77,59.50 203.91,59.50 205.12,59.50 206.21,59.50 207.40,59.50 208.50,59.50 209.65,59.50 210.79,59.50 211.94,59.50 213.08,59.50 214.21,59.50 215.44,59.50 216.58,59.50 217.67,59.50 218.81,59.50 219.96,59.50 221.17,59.50 222.27,59.50 223.40,59.50 224.55,59.50 225.75,59.50 226.84,59.50 228.00,59.50 229.13,59.50 230.29,59.50 231.43,59.50 232.61,59.50 233.72,59.50 234.89,59.50 236.02,59.50 237.17,59.50 238.33,59.50 239.45,59.50 240.60,59.50 241.75,59.50 242.89,59.50 244.04,59.50 245.18,59.50 246.33,59.50 247.48,59.50 248.74,59.50 249.76,59.50 252.06,59.50 254.29,59.50 254.44,59.50 256.65,59.50 256.72,59.50 257.89,59.50 260.06,59.50 263.52,59.50 264.67,59.50 265.79,59.50 266.96,59.50 269.25,59.50 270.37,59.50 271.59,59.50 272.75,59.50 273.88,59.50 275.02,59.50 276.11,59.50 277.28,59.50 279.53,59.50 279.68,59.50 280.71,59.50 281.86,59.50 283.01,59.50 284.13,59.50 285.35,59.50 286.47,59.50 288.76,59.50 289.91,59.50 291.03,59.50 292.18,59.50 293.32,59.50 294.47,59.50 295.62,59.50 296.77,59.50 297.91,59.50 299.05,59.50 300.20,59.50 301.35,59.50 302.51,59.50 303.72,59.50 304.79,59.50 305.93,59.50 307.08,59.50 308.23,59.50 309.37,59.50 310.52,59.50 311.66,59.50 312.81,59.50 313.96,59.50 315.15,59.50 316.29,59.50 317.40,59.50 318.54,59.50 319.69,59.50 320.83,59.50 321.98,59.50 323.12,59.50 324.28,59.50 325.42,59.50 326.56,59.50 327.71,59.50 328.83,59.50 330.01,59.50 331.18,59.50 332.29,59.50 333.44,59.50 334.58,59.50 335.73,59.50 336.87,59.50 338.00,59.50 339.17,59.50 340.36,59.50 341.46,59.50 342.61,59.50 343.75,59.50 344.90,59.50 346.05,59.50 347.20,59.50 348.34,59.50 349.53,59.50 350.63,59.50 351.78,59.50 352.92,59.50 354.13,59.50 355.22,59.50 356.37,59.50 357.51,59.50 358.68,59.50 359.80,59.50 360.95,59.50 362.09,59.50 363.24,59.50 364.37,59.50 365.54,59.50 366.65,59.50 367.83,59.50 368.97,59.50 370.12,59.50 371.27,59.50 372.44,59.50 373.56,59.50 374.76,59.50 375.85,59.50 377.02,59.50 378.14,59.50 379.33,59.50 380.43,59.50 381.58,59.50 382.73,59.50 383.88,59.50 385.04,59.50 386.15,59.50 387.31,59.50 388.48,59.50 391.89,59.50 393.05,59.50 394.19,59.50 395.34,59.50 396.48,59.50 397.63,59.50 398.77,59.50 399.93,59.50 401.07,59.50 402.22,59.50 403.46,59.50 404.53,59.50 405.71,59.50 406.81,59.50 407.97,59.50 409.10,59.50 410.24,59.50 411.38,59.50 412.50,59.50 413.77,59.50 414.86,59.50 415.99,59.50 417.11,59.50 418.26,59.50 419.41,59.50 420.56,60.50 421.70,60.50 422.85,60.50 423.99,60.50 425.18,60.50 426.28,60.50 427.50,60.50 428.58,60.50 429.72,60.50 430.87,60.50 432.02,60.50 433.16,60.50 434.31,60.50 435.46,60.50 436.60,60.50 437.72,60.50 438.89,60.50 440.04,60.50 441.29,60.50 442.34,60.50 443.49,60.50 444.65,60.50 445.78,60.50 446.93,60.50 448.11,60.50 449.21,60.50 450.36,60.50 451.50,60.50 452.65,60.50 453.79,60.50 454.98,60.50 456.13,60.50 457.23,60.50 458.38,60.50 459.52,60.50 460.67,60.50 461.87,60.50 463.01,60.50 464.11,60.50 465.31,60.50 466.40,60.50 467.55,60.50 468.72,60.50 469.86,60.50 471.01,60.50 472.13,60.50 473.28,60.50 474.43,60.50 475.58,60.50 476.72,60.50 477.87,60.50 479.01,60.50 480.18,60.50 481.30,60.50 482.47,60.50 483.60,60.50 484.75,60.50 485.89,60.50 487.04,60.50 488.19,60.50 489.34,60.50 491.62,60.50 492.70,59.50 493.92,59.50 495.06,60.50 497.32,60.50 499.65,60.50 500.72,60.50 500.84,60.50 502.08,60.50 503.12,60.50 504.26,60.50 506.57,60.50 508.84,60.50 509.97,60.50 511.08,60.50 514.53,59.50 517.96,59.50 519.14,59.50 524.90,59.50 530.52,59.50 531.72,59.50 532.87,59.50 534.11,59.50 535.15,59.50 536.33,59.50 537.51,59.50 538.54,59.50 538.65,59.50 539.77,59.50 540.92,59.50 542.08,59.50 543.20,59.50 544.39,59.50 545.50,59.50 546.64,59.50 547.86,59.50 548.97,59.50 550.10,59.50 551.27,59.50 552.39,59.50 553.52,59.50 554.66,59.50 555.79,59.50 556.93,59.50 558.12,59.50 559.25,59.50 560.37,59.50 561.59,60.50 562.69,60.50 563.84,60.50 564.99,60.50 566.12,60.50 567.27,60.50 568.42,60.50 569.56,60.50 570.71,60.50 571.94,60.50 573.00,60.50 574.16,60.50 575.36,60.50 576.42,60.50 577.59,60.50 578.79,60.50 579.88,59.50 581.03,59.50 582.17,59.50 584.44,59.50 585.61,59.50 586.75,59.50 587.90,59.50 589.05,59.50 590.25,59.50 591.34,59.50 592.49,59.50 593.66,59.50 595.95,59.50 598.22,59.50 599.37,59.50 600.51,59.50 601.66,59.50 602.83,59.50 604.05,59.50 605.10,59.50 607.41,59.50 609.69,59.50 614.27,59.50 616.64,59.50 617.70,59.50 618.85,59.50 620.07,59.50 621.20,59.50 622.29,59.50 623.44,59.50 624.58,59.50 625.73,59.50 626.87,59.50 628.02,59.50 629.17,59.50 630.31,59.50 631.43,59.50 632.66,59.50 633.79,59.50 634.90,59.50 636.04,59.50 637.19,59.50 638.34,59.50 639.53,59.50 640.63,59.50 641.83,59.50 642.92,59.50 644.08,59.50 645.21,59.50 646.36,59.50 647.51,59.50 648.65,59.50 649.80,59.50 650.95,59.50 652.09,59.50 653.24,59.50 654.39,59.50 655.53,59.50 656.68,59.50 657.82,59.50 658.97,59.50 660.11,59.50 661.29,59.50 662.40,59.50 663.60,59.50 664.70,59.50 665.82,59.50 666.99,59.50 668.14,59.50 669.28,59.50 670.43,59.50 671.57,59.50 672.72,59.50 673.87,59.50 675.07,59.50 676.16,59.50 677.31,59.50 678.48,59.50 679.60,59.50 680.74,59.50 681.89,59.50 683.04,59.50 684.19,59.50 685.33,59.50 686.45,59.50 687.62,59.50 688.77,59.50 689.96,59.50 691.07,59.50 692.21,59.50 693.35,59.50 694.51,59.50 695.65,59.50 696.77,59.50 697.94,59.50 699.13,59.50 700.00,59.50" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-26 08:50 UTC</text>
+      <text x="580" y="150">10-28 08:49 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.03 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.655,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 294189.472466,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 73.81,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.655,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 294189.472466,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the party that wins control of the United States Senate and the party that wins control of the United States House of Representatives in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nA party wins control of the United States House of Representatives if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the chamber will be deemed controlled by the party with which the first elected Speaker of the House of the Congress that convenes after the 2026 midterm election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chambers.\n\nFor determining Senate control, all regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Vacant Senate seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat. For determining House control, all House elections in the 2026 United States midterm election that elect voting members and determine representation in the upcoming 120th Congress are included. Where a Senate or House seat is decided by a runoff, the runoff result will determine attribution of that seat, even if it takes place after November 2026.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected. \n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate and House members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate or House elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_native_history&quot;: {
+    &quot;available&quot;: true,
+    &quot;point_count&quot;: 47,
+    &quot;raw_point_count&quot;: 545,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;received_at&quot;: &quot;2026-10-28T08:50:20.995215+00:00&quot;,
+    &quot;endpoint&quot;: &quot;https://clob.polymarket.com/prices-history&quot;,
+    &quot;issues&quot;: [],
+    &quot;note&quot;: &quot;Native series reconstructed at received_at; historical rule versions and contemporaneous availability are not established.&quot;,
+    &quot;sampling&quot;: &quot;Actual samples at/before completed UTC hour boundaries, within 10 min; no interpolation.&quot;,
+    &quot;latest_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;latest_age_minutes&quot;: 54.933
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 1.0003,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T06:55:21+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.655,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;current_probability&quot;: 0.655
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 24.0003,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T07:55:21+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.655,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;,
+    &quot;current_probability&quot;: 0.655
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 44,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:22+00:00&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 73.81,
+    &quot;activity_component&quot;: 0.9114,
+    &quot;entropy_component&quot;: 0.9295,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/2026-balance-of-power-d-senate-d-house-949" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Republican Party control the Senate after the 2026 Midterm elections?</h2><span class="muted id">562794</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>33.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>73.6<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">302,953 usd</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual) · exchange-native basis; see evidence</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Exchange-native history · clob_reported_yes_price</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,89.50 41.15,89.50 42.32,89.50 43.44,89.50 44.60,89.50 45.73,89.50 46.88,89.50 48.02,89.50 49.17,89.50 50.32,89.50 51.47,89.50 52.61,89.50 53.81,89.50 54.90,89.50 56.05,89.50 57.30,89.50 58.34,89.50 59.49,89.50 60.63,89.50 61.78,89.50 62.93,89.50 64.07,89.50 65.22,89.50 66.36,89.50 67.54,89.50 68.66,89.50 69.81,89.50 70.93,89.50 72.11,89.50 73.24,89.50 74.39,89.50 75.54,90.50 76.69,90.50 77.83,90.50 78.98,90.50 80.12,90.50 81.24,90.50 82.41,90.50 83.61,90.50 84.70,90.50 85.85,90.50 87.00,90.50 88.14,90.50 89.28,90.50 90.43,90.50 91.58,90.50 92.73,90.50 93.88,90.50 95.01,90.50 96.16,90.50 97.32,90.50 98.46,90.50 99.61,90.50 100.75,90.50 101.95,90.50 103.05,90.50 104.17,90.50 105.34,90.50 106.51,90.50 107.63,90.50 108.77,90.50 109.92,89.50 111.07,89.50 112.21,89.50 113.37,89.50 114.51,89.50 115.65,89.50 116.81,89.50 117.95,89.50 119.09,89.50 120.24,89.50 121.39,89.50 122.53,89.50 123.67,89.50 124.86,89.50 125.99,89.50 127.12,89.50 128.27,89.50 129.43,89.50 130.56,89.50 131.71,89.50 132.85,89.50 133.99,89.50 135.14,89.50 136.29,89.50 137.43,89.50 138.58,89.50 139.78,89.50 140.88,89.50 142.08,89.50 143.20,89.50 144.31,89.50 145.50,89.50 146.63,89.50 147.75,89.50 148.90,89.50 150.04,89.50 151.19,89.50 152.36,89.50 153.48,89.50 154.63,89.50 155.78,89.50 156.92,89.50 158.07,89.50 159.22,89.50 160.33,89.50 161.51,89.50 162.65,89.50 163.80,89.50 164.94,89.50 166.20,89.50 167.23,89.50 168.38,89.50 169.52,89.50 170.67,89.50 171.82,89.50 172.97,89.50 174.11,89.50 175.26,89.50 176.40,89.50 177.55,89.50 178.69,89.50 179.85,89.50 181.01,89.50 182.14,89.50 183.28,89.50 184.43,89.50 185.57,89.50 186.73,89.50 187.87,89.50 189.02,89.50 190.16,89.50 191.31,89.50 192.45,89.50 193.61,89.50 194.77,89.50 195.90,89.50 197.04,90.50 198.18,90.50 199.34,90.50 200.48,90.50 201.63,90.50 202.78,90.50 203.91,90.50 205.12,90.50 206.21,90.50 207.41,90.50 208.50,90.50 209.65,90.50 210.79,90.50 211.94,90.50 213.08,90.50 214.21,90.50 215.44,90.50 216.58,90.50 217.67,90.50 218.81,90.50 219.96,90.50 221.17,90.50 222.27,90.50 223.40,90.50 224.55,90.50 225.75,90.50 226.84,90.50 228.00,90.50 229.13,90.50 230.29,90.50 231.43,90.50 232.62,90.50 233.72,90.50 234.89,90.50 236.02,90.50 237.17,90.50 238.33,90.50 239.45,90.50 240.60,90.50 241.75,90.50 242.89,90.50 244.04,90.50 245.18,90.50 246.33,90.50 247.48,90.50 248.76,90.50 249.76,90.50 252.06,90.50 254.28,90.50 254.44,90.50 256.65,90.50 256.72,90.50 257.89,90.50 260.06,90.50 261.14,90.50 263.52,90.50 264.68,90.50 265.79,90.50 266.96,90.50 269.25,90.50 270.37,90.50 271.59,90.50 272.75,90.50 273.88,90.50 275.02,90.50 276.11,90.50 277.28,90.50 279.53,90.50 279.68,90.50 280.71,90.50 281.86,90.50 283.01,90.50 284.13,90.50 285.35,90.50 286.47,90.50 288.76,90.50 289.92,90.50 291.03,90.50 292.18,90.50 293.32,90.50 294.47,90.50 295.62,90.50 296.77,90.50 297.91,90.50 299.05,90.50 300.20,90.50 301.35,90.50 302.51,90.50 303.72,90.50 304.79,90.50 305.93,90.50 307.08,90.50 308.23,90.50 309.37,90.50 310.52,90.50 311.67,90.50 312.81,90.50 313.96,90.50 315.16,91.50 316.29,91.50 317.41,91.50 318.54,91.50 319.69,91.50 320.83,91.50 321.98,91.50 323.12,91.50 324.28,91.50 325.42,91.50 326.56,91.50 327.71,90.50 328.83,90.50 330.01,90.50 331.18,91.50 332.29,91.50 333.44,91.50 334.58,91.50 335.73,91.50 336.87,91.50 338.00,91.50 339.17,91.50 340.36,91.50 341.46,91.50 342.61,91.50 343.75,91.50 344.90,91.50 346.05,91.50 347.20,91.50 348.34,91.50 349.53,91.50 350.63,91.50 351.78,91.50 352.92,91.50 354.13,91.50 355.22,91.50 356.37,91.50 357.51,91.50 358.68,91.50 359.80,91.50 360.96,91.50 362.09,91.50 363.24,91.50 364.37,91.50 365.54,91.50 366.65,91.50 367.83,91.50 368.97,91.50 370.12,91.50 371.27,91.00 372.46,91.00 373.56,91.00 374.77,91.00 375.86,91.00 377.02,91.50 378.14,91.50 379.34,91.50 380.43,91.50 381.59,91.50 382.73,91.50 383.88,91.50 385.04,91.50 386.15,91.50 387.31,91.50 388.48,91.50 391.89,91.50 393.05,91.50 394.19,91.50 395.34,91.50 396.48,91.50 397.63,91.50 398.77,91.50 399.94,91.50 401.07,91.50 402.22,91.50 403.46,91.50 404.53,91.50 405.71,90.50 406.81,90.50 407.97,90.50 409.10,90.50 410.24,90.50 411.38,90.50 412.51,90.50 413.80,90.50 414.86,90.50 415.99,90.50 417.11,90.50 418.26,90.50 419.41,90.50 420.56,90.50 421.70,90.50 422.85,90.50 423.99,90.50 425.18,90.50 426.28,90.50 427.50,90.50 428.58,90.50 429.72,90.50 430.87,90.50 432.02,90.50 433.16,90.50 434.32,90.50 435.46,90.50 436.60,90.50 437.72,90.50 438.89,90.50 440.04,90.50 441.30,90.50 442.34,90.50 443.49,90.50 444.65,90.50 445.78,90.50 446.93,90.50 448.11,90.50 449.21,90.50 450.36,90.50 451.50,90.50 452.65,90.50 453.79,90.50 454.99,90.50 456.13,90.50 457.23,90.50 458.38,90.50 459.52,90.50 460.67,90.50 461.87,90.50 463.01,90.50 464.11,90.50 465.31,90.50 466.40,90.50 467.55,90.50 468.72,90.50 469.86,90.50 471.01,90.50 472.13,90.50 473.28,90.50 474.43,90.50 475.58,90.50 476.73,90.50 477.87,90.50 479.01,90.50 480.19,90.50 481.30,90.50 482.47,90.50 483.60,90.50 484.75,90.50 485.90,90.50 487.04,90.50 488.19,90.50 489.34,90.50 491.63,90.50 492.70,90.50 493.92,90.50 495.06,90.50 497.32,90.50 499.65,90.50 500.72,90.50 500.84,90.50 502.07,90.50 503.12,90.50 504.26,90.50 506.57,90.50 508.84,90.50 509.97,90.50 511.08,90.50 514.53,90.50 517.96,91.50 519.14,91.50 524.90,91.50 530.53,91.50 531.72,91.50 532.87,91.50 533.95,91.50 534.11,91.50 535.15,91.50 536.33,91.50 537.52,91.50 538.54,91.50 538.65,91.50 539.77,91.50 540.92,91.50 542.08,91.50 543.20,91.50 544.40,91.50 545.50,91.50 546.65,91.50 547.86,91.50 548.97,91.50 550.10,91.50 551.28,91.50 552.39,91.50 553.53,91.50 554.67,91.50 555.79,91.50 556.93,91.50 558.12,91.50 559.25,91.50 560.38,91.50 561.59,91.00 562.69,90.50 563.84,90.50 564.99,90.50 566.13,90.50 567.28,90.50 568.42,91.50 569.56,91.50 570.71,91.50 571.95,91.50 573.00,91.50 574.16,91.50 575.36,91.50 576.42,92.50 577.59,92.50 578.81,92.50 579.88,92.00 581.03,92.00 582.17,91.50 584.44,91.50 585.61,91.50 586.75,91.50 587.90,91.50 589.05,91.50 590.25,91.50 591.34,91.50 592.49,91.50 593.66,91.50 595.95,91.50 598.22,91.50 599.37,91.50 600.51,91.50 601.66,91.50 602.83,91.50 604.05,91.50 605.10,91.50 607.41,91.50 609.69,91.50 614.27,91.50 616.64,91.50 617.70,91.50 618.85,91.50 620.09,91.50 621.20,91.50 622.30,91.50 623.44,91.50 624.58,91.50 625.73,91.50 626.87,91.50 628.02,91.50 629.17,91.50 630.31,91.50 631.43,91.50 632.66,91.50 633.79,91.50 634.90,91.50 636.05,91.50 637.19,91.50 638.34,91.50 639.53,91.50 640.63,91.50 641.83,91.50 642.93,91.50 644.08,91.50 645.21,91.50 646.36,91.50 647.51,91.50 648.65,91.50 649.80,91.50 650.95,91.50 652.10,91.50 653.24,91.50 654.39,91.50 655.54,91.50 656.68,91.50 657.82,91.50 658.97,91.50 660.12,91.50 661.31,91.50 662.40,91.50 663.60,91.50 664.70,91.50 665.82,91.50 666.99,91.50 668.14,91.50 669.29,91.50 670.43,91.50 671.58,91.50 672.72,91.50 673.87,91.50 675.07,91.50 676.16,91.50 677.31,91.50 678.48,91.50 679.60,91.50 680.74,91.50 681.90,91.50 683.04,91.50 684.19,91.50 685.33,91.50 686.45,91.50 687.63,91.50 688.77,91.50 689.96,91.50 691.07,91.50 692.21,91.50 693.36,91.50 694.51,91.50 695.65,91.50 696.77,91.50 697.95,91.50 699.13,91.50 700.00,91.50" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-26 08:50 UTC</text>
+      <text x="580" y="150">10-28 08:49 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.06 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.335,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 302952.96645500005,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 73.64,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.335,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 302952.96645500005,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_native_history&quot;: {
+    &quot;available&quot;: true,
+    &quot;point_count&quot;: 47,
+    &quot;raw_point_count&quot;: 547,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;received_at&quot;: &quot;2026-10-28T08:50:21.576975+00:00&quot;,
+    &quot;endpoint&quot;: &quot;https://clob.polymarket.com/prices-history&quot;,
+    &quot;issues&quot;: [],
+    &quot;note&quot;: &quot;Native series reconstructed at received_at; historical rule versions and contemporaneous availability are not established.&quot;,
+    &quot;sampling&quot;: &quot;Actual samples at/before completed UTC hour boundaries, within 10 min; no interpolation.&quot;,
+    &quot;latest_event_time&quot;: &quot;2026-10-28T07:55:24+00:00&quot;,
+    &quot;latest_age_minutes&quot;: 54.9
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 1.0006,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T06:55:22+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.335,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:24+00:00&quot;,
+    &quot;current_probability&quot;: 0.335
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;elapsed_hours&quot;: 24.0003,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T07:55:23+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.335,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:24+00:00&quot;,
+    &quot;current_probability&quot;: 0.335
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 44,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;clob_reported_yes_price&quot;,
+    &quot;current_event_time&quot;: &quot;2026-10-28T07:55:24+00:00&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 73.64,
+    &quot;activity_component&quot;: 0.9136,
+    &quot;entropy_component&quot;: 0.92,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-republican-party-control-the-senate-after-the-2026-midterm-elections" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>US announces end of Iranian blockade by December 31, 2026?</h2><span class="muted id">3128886</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>35.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>73.1<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">130,969 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.03 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.3505,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 130968.84556800002,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.0010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 73.08,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.3505,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 130968.84556800002,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.0010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;On July 13, 2026, Trump announced the United States would reinstate its naval blockade of Iran, targeting Iranian ships and customers.\n\nThis market will resolve to “Yes” if the United States government, or an authorized representative of the United States government, publicly and officially announces the end, termination, lifting, or suspension of the United States’ naval blockade on Iranian ships and ships of Iranian customers, between market creation and the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement qualifies if it communicates that the United States will generally cease blocking vessel traffic for Iranian ships and customers, including an announcement that the blockade will not take effect at all, even if some restrictions remain (for example, an imposition of fees). An announcement does not qualify if it reflects only a limited or partial change that stops short of a general end or suspension of the blockade, for example, an exemption for a specific vessel, cargo, or port.\n\nA qualifying announcement must be a declarative statement of the United States government’s present termination or suspension of the blockade, previously-unannounced prior termination or suspension of the blockade, or definitive decision to terminate or suspend the blockade.\n\nA qualifying announcement must clearly and unambiguously identify the end or suspension of the blockade. Statements that merely allude to, reference, or describe an end to the blockade, without clearly communicating it, do not qualify. The announcement need not use specific terminology or reference the end of a blockade by name; an announcement of a resumption of prior obligations, the maintenance of a status quo, or a return to a previously agreed baseline qualifies, provided the substantive policy of ending or suspending the blockade is clearly and unambiguously communicated.\n\nA qualifying announcement must be made through official channels, by an individual acting in an official capacity. Statements made incidentally or informally in a context not intended for official communication do not qualify.\n\nThe following do not qualify:\n\nAnonymous, unattributed, or leaked statements not confirmed as official;\nStatements by persons not authorized to speak for the United States government;\nThird-party speculation, analysis, or predictions that the United States government will announce or implement an end to the blockade;\nSatirical, fabricated, hacked, or impersonated communications; and\nStatements that describe a prospective, contingent, probable, or conditional end to the blockade rather than announcing a present and decided position.\n\nOnce a qualifying announcement is made, this market will resolve to “Yes” regardless of whether it is later reversed, or whether the blockade actually ends in practice.\n\nResolution will be based on official information from the United States government, including the President, the Department of Defense, the Department of State, and United States Central Command (CENTCOM), or the official representatives of the United States government.\n&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 73.08,
+    &quot;activity_component&quot;: 0.8529,
+    &quot;entropy_component&quot;: 0.9345,
+    &quot;quote_component&quot;: 0.9933,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-december-31-2026-20260727171803489-375-949-645-919-269-157-255-857" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will AC Milan win on 2026-10-28?</h2><span class="muted id">5713187</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>55.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>72.9<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">113,203 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.03 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.555,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 113202.64222100002,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 72.93,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.555,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 113202.64222100002,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;In the upcoming game, scheduled for October 28, 2026\nIf AC Milan wins, this market will resolve to \&quot;Yes\&quot;.\nOtherwise, this market will resolve to \&quot;No\&quot;.\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \&quot;No\&quot;.\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event&#x27;s conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event&#x27;s conclusion, this market will resolve 50-50, or to \&quot;Draw\&quot; where applicable.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 72.93,
+    &quot;activity_component&quot;: 0.8423,
+    &quot;entropy_component&quot;: 0.9913,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/sea-mil-bol-2026-10-28-mil" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Juventus FC win on 2026-10-28?</h2><span class="muted id">5713238</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>54.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>72.7<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">100,242 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.545,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 100242.486041,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 72.69,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.545,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 100242.486041,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;In the upcoming game, scheduled for October 28, 2026\nIf Juventus FC wins, this market will resolve to \&quot;Yes\&quot;.\nOtherwise, this market will resolve to \&quot;No\&quot;.\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \&quot;No\&quot;.\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event&#x27;s conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event&#x27;s conclusion, this market will resolve 50-50, or to \&quot;Draw\&quot; where applicable.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 72.69,
+    &quot;activity_component&quot;: 0.8335,
+    &quot;entropy_component&quot;: 0.9941,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/sea-gen-juv-2026-10-28-juv" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Marine Le Pen win the 2027 French presidential election?</h2><span class="muted id">679018</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>43.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>72.2<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">55,803 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.4305,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 55803.47177,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.0010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 72.21,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.4305,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 55803.47177,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.0010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;The next French presidential election is currently expected to be held around April 2027.  This market pertains to the outcome of the next French presidential election, regardless of whether it follows the scheduled end of the current term or is held earlier. \n\nThe President of France is elected via a two-round system; a candidate must secure over 50% of the vote to win outright in the first round. If no candidate achieves this, the top two contenders advance to a runoff.\n\nThis market will resolve according to the candidate who wins this election.\n\nThis market includes any potential second round. If, for any reason, the results of the election are not known by December 31, 2027, 11:59 PM ET, this market will resolve to \&quot;Other\&quot;.\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the French Government, specifically the Ministry of the Interior (https://www.interieur.gouv.fr/).&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 72.21,
+    &quot;activity_component&quot;: 0.7911,
+    &quot;entropy_component&quot;: 0.986,
+    &quot;quote_component&quot;: 0.9933,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-marine-le-pen-win-the-2027-french-presidential-election" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>US x Iran ceasefire continues through November 15?</h2><span class="muted id">5190747</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>50.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>71.8<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">67,416 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.03 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.505,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 67415.53393,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 71.83,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.505,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 67415.53393,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve to “No” if the United States takes a qualifying military action against Iran by the specified date, 11:59 PM Iran Standard Time. Otherwise this market will resolve to “Yes.”\n\nA qualifying military action refers to an air strike or a surface-to-surface missile strike, initiated by the United States, that directly impacts Iran. An air strike includes bombs, air-to-surface missiles, and air-launched drones. A surface-to-surface missile strike includes one-way attack drones and surface-to-surface missiles such as cruise or ballistic missiles.\n\nThe following actions do not constitute a qualifying military action:\nMunitions destroyed or intercepted before impact;\nSurface-to-air missile strikes;\nSmall-arms fire;\nGround incursions;\nCyber operations;\nNaval gunfire and artillery fire;\nHowitzers, artillery pieces, mortars, and rocket artillery (e.g. MLRS systems);\nMinor surface-to-surface strikes, including short range loitering munitions, FPV drones, and ATGM strikes;\nAny threat, authorization, or announcement of force that has not been executed.\n\nAny munition that is intercepted or destroyed before impact does not constitute a qualifying military action. Debris, fragments, or any wreckage from intercepted munitions that land on Iran do not constitute a military action regardless of any damage incurred.\n\n“Iran” refers to the terrestrial territory of Iran, including its internal waters. Iran’s maritime territory and airspace are not encompassed. Where territorial borders are disputed, all territory claimed by and under the de facto control of Iran as of market creation will qualify.\n\nThe occurrence, attribution, and timing of a qualifying military action will be primarily determined based on a consensus of information available from the resolution sources. Where multiple sources conflict regarding the occurrence, attribution, or timing of a relevant military action, this market will remain open until the earlier of: i) the confirmation of the occurrence, attribution, and timing of the action based on a consensus of information available from the resolution sources or ii) 3 full calendar days (Iran Standard Time) from the date of the first credibly reported evidence of the action. If this period would extend past the end date, this market will remain open to allow for 3 full calendar days to pass. At the end of the third calendar day, if conflicting reports remain, the incident will be adjudicated based on the totality of information available from the resolution sources at that time. No single statement, denial, or presentation of evidence will govern where it is contradicted by the totality of information.\n\nThe resolution sources for this market will be official information from the governments and militaries of the United States and Iran and a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 71.83,
+    &quot;activity_component&quot;: 0.8048,
+    &quot;entropy_component&quot;: 0.9999,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/us-x-iran-ceasefire-continues-through-november-15" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Republicans win the Texas Senate race in 2026?</h2><span class="muted id">630964</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>32.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>71.3<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">133,031 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.325,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 133031.14110999997,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 71.3,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.325,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 133031.14110999997,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the winner of the 2026 midterm Texas U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 71.3,
+    &quot;activity_component&quot;: 0.854,
+    &quot;entropy_component&quot;: 0.9097,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-republicans-win-the-texas-senate-race-in-2026" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="kalshi" data-action="monitor">
+          <div class="market-top"><div><span class="venue">KALSHI</span>
+          <h2>Will the Federal Reserve Hike rates by 0bps at their December 2026 meeting?</h2><span class="muted id">KXFEDDECISION-26DEC-H0</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>22.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>71.2<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">57,795 contracts</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: -1.00 pp (24.00h actual) · exchange-native basis; see evidence</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Exchange-native history · candle_close_yes_midpoint</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,101.50 54.04,101.50 68.09,101.50 82.13,101.50 96.17,101.50 110.21,101.50 124.26,101.50 138.30,101.50 152.34,101.50 166.38,101.50 180.43,101.50 194.47,101.50 208.51,101.50 222.55,101.50 236.60,101.50 250.64,101.50 264.68,102.50 278.72,101.50 292.77,101.50 306.81,101.50 320.85,101.50 334.89,101.50 348.94,101.50 362.98,101.50 377.02,101.50 391.06,101.50 405.11,101.50 419.15,101.50 433.19,101.50 447.23,100.50 461.28,100.50 475.32,100.50 489.36,100.50 503.40,100.50 517.45,100.50 531.49,100.50 545.53,100.50 559.57,100.50 573.62,100.50 587.66,100.50 601.70,100.50 615.74,100.50 629.79,101.50 643.83,101.50 657.87,101.50 671.91,101.50 685.96,102.50 700.00,102.50" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-26 09:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:16.796069+00:00<br>
+          Price basis: yes_midpoint · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.225,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 57794.73,
+      &quot;unit&quot;: &quot;contracts&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 71.23,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.225,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:16.796069+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 57794.73,
+    &quot;unit&quot;: &quot;contracts&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;If the Federal Reserve does a Hike of 0bps on December 09, 2026, then the market resolves to Yes.\nThe outcomes are mutually exclusive: at most one can resolve to Yes. For example, a 50-basis-point hike resolves “Hike   25 bps” to Yes and “Hike 25 bps” to No.\n\nIf the scheduled FOMC meeting is canceled and does not occur on its scheduled date, “Fed maintains rate” resolves to Yes and all other outcomes resolve to No.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.119,
+    &quot;source_updated_at&quot;: &quot;2026-10-27T18:37:20.014572Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_native_history&quot;: {
+    &quot;available&quot;: true,
+    &quot;point_count&quot;: 48,
+    &quot;raw_point_count&quot;: 48,
+    &quot;basis&quot;: &quot;candle_close_yes_midpoint&quot;,
+    &quot;received_at&quot;: &quot;2026-10-28T08:50:22.380511+00:00&quot;,
+    &quot;endpoint&quot;: &quot;https://api.elections.kalshi.com/trade-api/v2/series/KXFEDDECISION/markets/KXFEDDECISION-26DEC-H0/candlesticks&quot;,
+    &quot;issues&quot;: [],
+    &quot;note&quot;: &quot;Native series reconstructed at received_at; historical rule versions and contemporaneous availability are not established.&quot;,
+    &quot;sampling&quot;: &quot;Completed hourly candles.&quot;,
+    &quot;latest_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;latest_age_minutes&quot;: 50.28
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;candle_close_yes_midpoint&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.225,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;current_probability&quot;: 0.225
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: -0.01,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;candle_close_yes_midpoint&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.235,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;current_probability&quot;: 0.225
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 46,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;,
+    &quot;origin&quot;: &quot;exchange_native_history&quot;,
+    &quot;basis&quot;: &quot;candle_close_yes_midpoint&quot;,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 71.23,
+    &quot;activity_component&quot;: 0.9524,
+    &quot;entropy_component&quot;: 0.7692,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://kalshi.com/markets/kxfeddecision-26dec" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Gen.G win Worlds 2026?</h2><span class="muted id">4397022</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>43.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>71.0<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">55,558 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.435,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 55558.091453,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 71.04,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.435,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 55558.091453,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the winner of the 2026 League of Legends World Championship (Worlds 2026), currently scheduled for October 15 to November 14, 2026.\n\nIf this tournament is postponed after November 28, 2026, 11:59 PM ET, canceled, or a winner has not been declared within this timeframe, this market will resolve to \&quot;Other\&quot;.\n\nIf multiple teams are declared winners, this market will resolve in favor of the team whose listed team name comes first alphabetically.\n\nThe resolution source for this market will be official information from the tournament organizer, Riot Games, via the LoL Esports website (https://lolesports.com). However, a consensus of credible reporting (e.g., Liquipedia at https://liquipedia.net/leagueoflegends/World_Championship/2026) may also be used.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 71.04,
+    &quot;activity_component&quot;: 0.7908,
+    &quot;entropy_component&quot;: 0.9878,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-genptg-win-worlds-2026" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Puma Shen win the next Taipei Mayor election?</h2><span class="muted id">3580933</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>33.6%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>70.9<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">107,730 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.3355,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 107730.316391,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.01100000000000001,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 70.9,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.3355,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 107730.316391,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.01100000000000001,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;Taiwanese local elections are scheduled to be held on November 28, 2026.\n\nThis market will resolve according to the candidate who becomes the next Mayor of Taipei as a result of this election.\n\nTemporary, interim, or placeholder Mayors appointed before the election will not be considered.\n\nIf the result of this election isn&#x27;t known, or no candidate has been elected, by June 30, 2027, 11:59 PM ET, the market will resolve to \&quot;Other\&quot;.\n\nThis market will resolve based on the results of the elections as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Taiwanese government, specifically the Central Election Commission (https://db.cec.gov.tw/).&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 70.9,
+    &quot;activity_component&quot;: 0.8387,
+    &quot;entropy_component&quot;: 0.9204,
+    &quot;quote_component&quot;: 0.9267,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-puma-shen-win-the-next-taipei-mayor-election-20260813125857102" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Chiang Wan-an win the next Taipei Mayor election?</h2><span class="muted id">3580932</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>66.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>70.7<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">95,022 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.665,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 95022.063388,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 70.7,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.665,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 95022.063388,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;Taiwanese local elections are scheduled to be held on November 28, 2026.\n\nThis market will resolve according to the candidate who becomes the next Mayor of Taipei as a result of this election.\n\nTemporary, interim, or placeholder Mayors appointed before the election will not be considered.\n\nIf the result of this election isn&#x27;t known, or no candidate has been elected, by June 30, 2027, 11:59 PM ET, the market will resolve to \&quot;Other\&quot;.\n\nThis market will resolve based on the results of the elections as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Taiwanese government, specifically the Central Election Commission (https://db.cec.gov.tw/).&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 70.7,
+    &quot;activity_component&quot;: 0.8296,
+    &quot;entropy_component&quot;: 0.92,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-chiang-wan-an-win-the-next-taipei-mayor-election-20260813125857101" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Russia x Ukraine ceasefire agreement by March 31, 2027?</h2><span class="muted id">3701687</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>35.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>70.7<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">78,781 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.355,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 78780.934503,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 70.69,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.355,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 78780.934503,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve to “Yes” if there is a ceasefire agreement between Russia and Ukraine by the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nA ceasefire agreement refers to any mutually-agreed suspension of direct military engagement between Russia and Ukraine, which is either officially announced by both countries or confirmed by a consensus of credible reporting to have been mutually agreed by both countries.\n\nA broader peace deal, normalization agreement, political framework, truce, or humanitarian pause will qualify if it includes a mutually agreed suspension of direct military engagement, to be effective on a specified date. Agreements that outline future negotiations or de-escalation measures without an explicit, dated commitment to stop fighting will not qualify.\n\nAny form of informal understanding, backchannel communication, de-escalation without an announced agreement, or unilateral pause in hostilities will not be considered a ceasefire agreement.\n\nOnly agreements which constitute a general pause in the conflict will qualify. Agreements which only apply to specific conflict categories (e.g. restrictions on certain target categories or certain locations) will not qualify.\n\nIf a qualifying agreement is officially reached before this market’s end date, this market will resolve to “Yes,” regardless of whether the ceasefire agreement officially takes effect after that date.\n\nThe primary resolution sources for this market will be official information from the governments of Russia and Ukraine and a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 70.69,
+    &quot;activity_component&quot;: 0.8161,
+    &quot;entropy_component&quot;: 0.9385,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/russia-x-ukraine-ceasefire-agreement-by-march-31-2027" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Democrats win the Kansas Senate race in 2026?</h2><span class="muted id">630746</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>38.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>69.6<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">41,121 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.385,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 41120.740106,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 69.62,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.385,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 41120.740106,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the winner of the 2026 midterm Kansas U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 69.62,
+    &quot;activity_component&quot;: 0.769,
+    &quot;entropy_component&quot;: 0.9615,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-democrats-win-the-kansas-senate-race-in-2026" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will Israel strike 4 countries in 2026?</h2><span class="muted id">678747</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>66.9%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>69.4<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">81,960 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:17.972366+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.669,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 81959.587594,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.016000000000000014,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 69.43,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.669,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:17.972366+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 81959.587594,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.016000000000000014,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the total number of different countries&#x27; soil that Israel initiates a drone, missile, or air strike between January 1, 2026, 12:00 AM ET and December 31, 2026, 11:59 PM ET.\n\nStrikes on embassies or consulates will count towards the country the embassy or consulate is located in, not towards the country they represent.\n\nStrikes within the territory controlled by Israel as of December 31, 2025, 11:59 PM ET, as well as strikes within the West Bank or the Gaza Strip, will not be counted towards this market&#x27;s resolution.\n\nFor the purposes of this market, a qualifying \&quot;strike\&quot; is defined as the use of aerial bombs, drones, or missiles (including cruise or ballistic missiles) launched by Israeli military forces that impact another country&#x27;s ground territory that is officially acknowledged by the Israeli government or a consensus of credible reporting.\n\nMissiles or drones that are intercepted and surface-to-air missile strikes will not count towards the resolution of this market, regardless of whether they land on another country&#x27;s territory or cause damage.\n\nActions such as artillery fire, small arms fire, FPV or ATGM strikes directly, ground incursions, naval shelling, cyberattacks, or other operations conducted by Israeli ground operatives will not qualify.\n\nThe resolution source will be a consensus of credible reporting.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.099,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:44:02.211618Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 69.43,
+    &quot;activity_component&quot;: 0.8189,
+    &quot;entropy_component&quot;: 0.9159,
+    &quot;quote_component&quot;: 0.8933,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-israel-strike-4-countries-in-november-2025" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Democrats win the Texas Senate race in 2026?</h2><span class="muted id">630963</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>67.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>69.2<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">59,204 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.675,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 59203.713471999996,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 69.25,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.675,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 59203.713471999996,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the winner of the 2026 midterm Texas U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 69.25,
+    &quot;activity_component&quot;: 0.7954,
+    &quot;entropy_component&quot;: 0.9097,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-democrats-win-the-texas-senate-race-in-2026" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Pete Hegseth out as Secretary of Defense by December 31?</h2><span class="muted id">1811265</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>33.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>69.1<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">49,951 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.335,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 49951.28458099999,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 69.07,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.335,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 49951.28458099999,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve to “Yes” if Pete Hegseth ceases to be U.S. Secretary of Defense for any period of time between market creation and the specified date (ET). Otherwise, this market will resolve to “No”.\n\nAn announcement of Pete Hegseth&#x27;s resignation/removal before this market&#x27;s end date will immediately resolve this market to \&quot;Yes\&quot;, regardless of when the announced resignation/removal goes into effect.\n\nThe resolution source for this market will be official information from Pete Hegseth and the U.S. government; however, a consensus of credible reporting may also be used.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 69.07,
+    &quot;activity_component&quot;: 0.7831,
+    &quot;entropy_component&quot;: 0.92,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/pete-hegseth-out-as-secretary-of-defense-by-december-31" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Democrats win the Michigan Senate race in 2026?</h2><span class="muted id">630805</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>69.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>68.9<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">64,893 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.695,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 64893.193769,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 68.92,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.695,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 64893.193769,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the winner of the 2026 midterm Michigan U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 68.92,
+    &quot;activity_component&quot;: 0.802,
+    &quot;entropy_component&quot;: 0.8873,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-democrats-win-the-michigan-senate-race-in-2026" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article>
+<article class="market" data-source="polymarket" data-action="monitor">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>Will the Republican Party win the NC-13 House seat?</h2><span class="muted id">1284081</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>64.5%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>68.9<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">38,840 usd</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:50:20.064142+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.645,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 38839.69011,
+      &quot;unit&quot;: &quot;usd&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.010000000000000009,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 68.9,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.645,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:50:20.064142+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 38839.69011,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.010000000000000009,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;This market will resolve according to the party of the candidate who wins the NC-13 congressional district seat in the U.S. House of Representatives in the 2026 midterm elections. The midterm elections will take place on November 3, 2026.\n\n​A candidate&#x27;s party will be determined by their ballot-listed or otherwise identifiable affiliation with that party at the time all of the 2026 House elections are conclusively called by this market&#x27;s resolution sources. A candidate without a ballot-listed affiliation to either the Democrat or Republican parties will be considered a member of one of these parties based on the party with which they most recently expressed their intent to caucus at the time all of the House elections are conclusively called by this market&#x27;s resolution sources.\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the United States government, specifically the Federal Election Commission (https://www.fec.gov/).&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.064,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:50:03.726398Z&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 68.9,
+    &quot;activity_component&quot;: 0.7649,
+    &quot;entropy_component&quot;: 0.9385,
+    &quot;quote_component&quot;: 0.9333,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><a href="https://polymarket.com/market/will-the-republican-party-win-the-nc-13-house-seat" target="_blank" rel="noopener noreferrer">Open market ↗</a></details></article></section><p class="empty" id="empty">No markets match these filters.</p>
+    <details><summary>Collection coverage &amp; run metadata</summary><pre>{
+  &quot;as_of&quot;: &quot;2026-10-28T08:50:23.924684+00:00&quot;,
+  &quot;data_mode&quot;: &quot;live_api&quot;,
+  &quot;package_version&quot;: &quot;0.2.0&quot;,
+  &quot;coverage&quot;: {
+    &quot;sources&quot;: [
+      {
+        &quot;source&quot;: &quot;polymarket&quot;,
+        &quot;normalized_count&quot;: 169,
+        &quot;skipped&quot;: 31,
+        &quot;truncated&quot;: true,
+        &quot;errors&quot;: []
+      },
+      {
+        &quot;source&quot;: &quot;kalshi&quot;,
+        &quot;normalized_count&quot;: 121,
+        &quot;skipped&quot;: 0,
+        &quot;truncated&quot;: false,
+        &quot;errors&quot;: []
+      }
+    ],
+    &quot;kalshi_series&quot;: [
+      &quot;KXFEDDECISION&quot;,
+      &quot;KXCPI&quot;,
+      &quot;KXGDP&quot;
+    ],
+    &quot;page_limit&quot;: 100,
+    &quot;max_pages_per_scope&quot;: 2,
+    &quot;note&quot;: &quot;Polymarket sorted by rolling volume; Kalshi scoped watchlist. Not complete exchange coverage. Raw pages saved beside database.&quot;,
+    &quot;native_history&quot;: {
+      &quot;requested_per_source&quot;: 3,
+      &quot;series&quot;: 6,
+      &quot;points&quot;: 1779,
+      &quot;errors&quot;: []
+    }
+  },
+  &quot;config&quot;: {
+    &quot;min_polymarket_volume&quot;: 1000,
+    &quot;min_kalshi_volume&quot;: 100,
+    &quot;max_spread&quot;: 0.08,
+    &quot;min_probability&quot;: 0.02,
+    &quot;max_probability&quot;: 0.98,
+    &quot;jump_1h&quot;: 0.05,
+    &quot;jump_24h&quot;: 0.1,
+    &quot;rolling_volume_ratio&quot;: 3.0,
+    &quot;robust_z&quot;: 4.0,
+    &quot;max_snapshot_age_minutes&quot;: 30,
+    &quot;enable_fixed_jumps&quot;: true,
+    &quot;enable_robust_z&quot;: true,
+    &quot;enable_activity_surge&quot;: true
+  },
+  &quot;counts&quot;: {
+    &quot;processed&quot;: 290,
+    &quot;eligible&quot;: 112,
+    &quot;excluded&quot;: 178,
+    &quot;reported&quot;: 20
+  },
+  &quot;agent&quot;: {
+    &quot;requested_mode&quot;: &quot;rules&quot;,
+    &quot;max_model_calls&quot;: 0,
+    &quot;attempted_model_calls&quot;: 0,
+    &quot;failed_model_calls&quot;: 0
+  },
+  &quot;ranking&quot;: &quot;Eligibility first, then descending heuristic research priority; no return forecast.&quot;,
+  &quot;code_sha256&quot;: &quot;c0af90f4d41a6610b59c9ccf040f70c680c8881c9cc1b6122f9142bea20a5005&quot;,
+  &quot;input_sha256&quot;: &quot;207c489cf4b610457df18f3b16e4c96ea2af7bf775029d75ed8307709f021525&quot;,
+  &quot;runtime&quot;: {
+    &quot;python&quot;: &quot;3.12.7&quot;,
+    &quot;platform&quot;: &quot;win32&quot;
+  },
+  &quot;run_id&quot;: &quot;b191cebdbbf4c3f8eebf&quot;
+}</pre></details>
+    <footer>Research prototype · REST polling, not streaming · No external scripts or tracking.<br>
+    A signal indicates research attention, not causal explanation, fair value, or executable trading profit.<br>
+    Missing history stays unknown. Source metadata time is not a quote timestamp.</footer></main>
+    <script>
+    const fields=['search','source','action'].map(x=>document.getElementById(x));
+    function filter(){const [q,s,a]=fields.map(x=>x.value.toLowerCase());let n=0;
+      document.querySelectorAll('.market').forEach(el=>{const ok=(!q||el.querySelector('.market-top').textContent.toLowerCase().includes(q))&&(!s||el.dataset.source===s)&&(!a||el.dataset.action===a);el.hidden=!ok;if(ok)n++;});
+      document.getElementById('empty').style.display=n?'none':'block';}
+    fields.forEach(el=>el.addEventListener('input',filter));
+    </script></body></html>

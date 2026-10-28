@@ -1,0 +1,339 @@
+{
+  "truncated_sample": true,
+  "note": "First three raw points per native series; full normalized series are in snapshot_bundle.json.",
+  "series": [
+    {
+      "source": "polymarket",
+      "market_id": "562793",
+      "received_at": "2026-10-28T08:50:20.574495+00:00",
+      "endpoint": "https://clob.polymarket.com/prices-history",
+      "params": {
+        "market": "113287701564209339913693347405685749986285999146352375265161592243948562084773",
+        "startTs": 1793004617,
+        "endTs": 1793177417,
+        "fidelity": 5
+      },
+      "payload": {
+        "history": [
+          {
+            "t": 1793004620,
+            "p": 0.645
+          },
+          {
+            "t": 1793004919,
+            "p": 0.645
+          },
+          {
+            "t": 1793005226,
+            "p": 0.645
+          }
+        ]
+      },
+      "original_point_count": 545
+    },
+    {
+      "source": "polymarket",
+      "market_id": "562828",
+      "received_at": "2026-10-28T08:50:20.995215+00:00",
+      "endpoint": "https://clob.polymarket.com/prices-history",
+      "params": {
+        "market": "34722410608062854697106861099776685947172185964394483545370684749662285977831",
+        "startTs": 1793004617,
+        "endTs": 1793177417,
+        "fidelity": 5
+      },
+      "payload": {
+        "history": [
+          {
+            "t": 1793004620,
+            "p": 0.645
+          },
+          {
+            "t": 1793004920,
+            "p": 0.645
+          },
+          {
+            "t": 1793005226,
+            "p": 0.645
+          }
+        ]
+      },
+      "original_point_count": 545
+    },
+    {
+      "source": "polymarket",
+      "market_id": "562794",
+      "received_at": "2026-10-28T08:50:21.576975+00:00",
+      "endpoint": "https://clob.polymarket.com/prices-history",
+      "params": {
+        "market": "51939490109676186832507970701169130490548061087912630009168726706475001411420",
+        "startTs": 1793004617,
+        "endTs": 1793177417,
+        "fidelity": 5
+      },
+      "payload": {
+        "history": [
+          {
+            "t": 1793004621,
+            "p": 0.355
+          },
+          {
+            "t": 1793004921,
+            "p": 0.355
+          },
+          {
+            "t": 1793005229,
+            "p": 0.355
+          }
+        ]
+      },
+      "original_point_count": 547
+    },
+    {
+      "source": "kalshi",
+      "market_id": "KXFEDDECISION-26DEC-H0",
+      "received_at": "2026-10-28T08:50:22.380511+00:00",
+      "endpoint": "https://api.elections.kalshi.com/trade-api/v2/series/KXFEDDECISION/markets/KXFEDDECISION-26DEC-H0/candlesticks",
+      "params": {
+        "start_ts": 1793004616,
+        "end_ts": 1793177416,
+        "period_interval": 60
+      },
+      "payload": {
+        "candlesticks": [
+          {
+            "end_period_ts": 1793005200,
+            "open_interest_fp": "265970.62",
+            "price": {
+              "close_dollars": "0.2300",
+              "high_dollars": "0.2300",
+              "low_dollars": "0.2300",
+              "mean_dollars": "0.2300",
+              "open_dollars": "0.2300",
+              "previous_dollars": "0.2300"
+            },
+            "volume_fp": "127.37",
+            "yes_ask": {
+              "close_dollars": "0.2400",
+              "high_dollars": "0.2400",
+              "low_dollars": "0.2400",
+              "open_dollars": "0.2400"
+            },
+            "yes_bid": {
+              "close_dollars": "0.2300",
+              "high_dollars": "0.2300",
+              "low_dollars": "0.2300",
+              "open_dollars": "0.2300"
+            }
+          },
+          {
+            "end_period_ts": 1793008800,
+            "open_interest_fp": "265970.62",
+            "price": {
+              "previous_dollars": "0.2300"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.2400",
+              "high_dollars": "0.2400",
+              "low_dollars": "0.2400",
+              "open_dollars": "0.2400"
+            },
+            "yes_bid": {
+              "close_dollars": "0.2300",
+              "high_dollars": "0.2300",
+              "low_dollars": "0.2300",
+              "open_dollars": "0.2300"
+            }
+          },
+          {
+            "end_period_ts": 1793012400,
+            "open_interest_fp": "265970.62",
+            "price": {
+              "previous_dollars": "0.2300"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.2400",
+              "high_dollars": "0.2400",
+              "low_dollars": "0.2400",
+              "open_dollars": "0.2400"
+            },
+            "yes_bid": {
+              "close_dollars": "0.2300",
+              "high_dollars": "0.2300",
+              "low_dollars": "0.2300",
+              "open_dollars": "0.2300"
+            }
+          }
+        ],
+        "ticker": "KXFEDDECISION-26DEC-H0"
+      },
+      "original_point_count": 48
+    },
+    {
+      "source": "kalshi",
+      "market_id": "KXGDP-26OCT30-T3.0",
+      "received_at": "2026-10-28T08:50:23.131076+00:00",
+      "endpoint": "https://api.elections.kalshi.com/trade-api/v2/series/KXGDP/markets/KXGDP-26OCT30-T3.0/candlesticks",
+      "params": {
+        "start_ts": 1793004618,
+        "end_ts": 1793177418,
+        "period_interval": 60
+      },
+      "payload": {
+        "candlesticks": [
+          {
+            "end_period_ts": 1793005200,
+            "open_interest_fp": "15235.60",
+            "price": {
+              "previous_dollars": "0.6400"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.6500",
+              "high_dollars": "0.6500",
+              "low_dollars": "0.6400",
+              "open_dollars": "0.6400"
+            },
+            "yes_bid": {
+              "close_dollars": "0.6400",
+              "high_dollars": "0.6400",
+              "low_dollars": "0.6300",
+              "open_dollars": "0.6300"
+            }
+          },
+          {
+            "end_period_ts": 1793008800,
+            "open_interest_fp": "15246.31",
+            "price": {
+              "close_dollars": "0.6400",
+              "high_dollars": "0.6400",
+              "low_dollars": "0.6400",
+              "mean_dollars": "0.6400",
+              "open_dollars": "0.6400",
+              "previous_dollars": "0.6400"
+            },
+            "volume_fp": "15.00",
+            "yes_ask": {
+              "close_dollars": "0.6400",
+              "high_dollars": "0.6500",
+              "low_dollars": "0.6400",
+              "open_dollars": "0.6500"
+            },
+            "yes_bid": {
+              "close_dollars": "0.6300",
+              "high_dollars": "0.6400",
+              "low_dollars": "0.6300",
+              "open_dollars": "0.6400"
+            }
+          },
+          {
+            "end_period_ts": 1793012400,
+            "open_interest_fp": "15246.31",
+            "price": {
+              "previous_dollars": "0.6400"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.6400",
+              "high_dollars": "0.6400",
+              "low_dollars": "0.6400",
+              "open_dollars": "0.6400"
+            },
+            "yes_bid": {
+              "close_dollars": "0.6300",
+              "high_dollars": "0.6300",
+              "low_dollars": "0.6300",
+              "open_dollars": "0.6300"
+            }
+          }
+        ],
+        "ticker": "KXGDP-26OCT30-T3.0"
+      },
+      "original_point_count": 46
+    },
+    {
+      "source": "kalshi",
+      "market_id": "KXFEDDECISION-26DEC-H25",
+      "received_at": "2026-10-28T08:50:23.910467+00:00",
+      "endpoint": "https://api.elections.kalshi.com/trade-api/v2/series/KXFEDDECISION/markets/KXFEDDECISION-26DEC-H25/candlesticks",
+      "params": {
+        "start_ts": 1793004616,
+        "end_ts": 1793177416,
+        "period_interval": 60
+      },
+      "payload": {
+        "candlesticks": [
+          {
+            "end_period_ts": 1793005200,
+            "open_interest_fp": "154996.86",
+            "price": {
+              "previous_dollars": "0.7500"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.7500",
+              "high_dollars": "0.7500",
+              "low_dollars": "0.7500",
+              "open_dollars": "0.7500"
+            },
+            "yes_bid": {
+              "close_dollars": "0.7400",
+              "high_dollars": "0.7400",
+              "low_dollars": "0.7400",
+              "open_dollars": "0.7400"
+            }
+          },
+          {
+            "end_period_ts": 1793008800,
+            "open_interest_fp": "155023.06",
+            "price": {
+              "close_dollars": "0.7500",
+              "high_dollars": "0.7500",
+              "low_dollars": "0.7500",
+              "mean_dollars": "0.7500",
+              "open_dollars": "0.7500",
+              "previous_dollars": "0.7500"
+            },
+            "volume_fp": "26.20",
+            "yes_ask": {
+              "close_dollars": "0.7500",
+              "high_dollars": "0.7500",
+              "low_dollars": "0.7500",
+              "open_dollars": "0.7500"
+            },
+            "yes_bid": {
+              "close_dollars": "0.7400",
+              "high_dollars": "0.7400",
+              "low_dollars": "0.7400",
+              "open_dollars": "0.7400"
+            }
+          },
+          {
+            "end_period_ts": 1793012400,
+            "open_interest_fp": "155023.06",
+            "price": {
+              "previous_dollars": "0.7500"
+            },
+            "volume_fp": "0.00",
+            "yes_ask": {
+              "close_dollars": "0.7500",
+              "high_dollars": "0.7500",
+              "low_dollars": "0.7500",
+              "open_dollars": "0.7500"
+            },
+            "yes_bid": {
+              "close_dollars": "0.7400",
+              "high_dollars": "0.7400",
+              "low_dollars": "0.7400",
+              "open_dollars": "0.7400"
+            }
+          }
+        ],
+        "ticker": "KXFEDDECISION-26DEC-H25"
+      },
+      "original_point_count": 48
+    }
+  ]
+}
