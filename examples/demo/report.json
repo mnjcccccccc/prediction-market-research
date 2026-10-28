@@ -1,0 +1,2019 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "as_of": "2026-10-28T08:00:00+00:00",
+    "data_mode": "synthetic",
+    "package_version": "0.2.0",
+    "coverage": {
+      "note": "Generated fixtures; not real markets, history, or LLM responses.",
+      "snapshots": 156,
+      "markets": 6,
+      "network_calls": 0
+    },
+    "config": {
+      "min_polymarket_volume": 1000,
+      "min_kalshi_volume": 100,
+      "max_spread": 0.08,
+      "min_probability": 0.02,
+      "max_probability": 0.98,
+      "jump_1h": 0.05,
+      "jump_24h": 0.1,
+      "rolling_volume_ratio": 3.0,
+      "robust_z": 4.0,
+      "max_snapshot_age_minutes": 30,
+      "enable_fixed_jumps": true,
+      "enable_robust_z": true,
+      "enable_activity_surge": true
+    },
+    "counts": {
+      "processed": 6,
+      "eligible": 3,
+      "excluded": 3,
+      "reported": 6
+    },
+    "agent": {
+      "requested_mode": "rules",
+      "max_model_calls": 0,
+      "attempted_model_calls": 0,
+      "failed_model_calls": 0
+    },
+    "ranking": "Eligibility first, then descending heuristic research priority; no return forecast.",
+    "code_sha256": "c0af90f4d41a6610b59c9ccf040f70c680c8881c9cc1b6122f9142bea20a5005",
+    "input_sha256": "e498dc9544a8d4532c0a3ce3636cf09318495f56b82a8d67c86829cb7e20fbd6",
+    "runtime": {
+      "python": "3.12.7",
+      "platform": "win32"
+    },
+    "run_id": "061c3e23ac089fcb4d96"
+  },
+  "markets": [
+    {
+      "analysis": {
+        "market": {
+          "source": "kalshi",
+          "market_id": "DEMO-KALSHI-CRYPTO",
+          "title": "[SYNTHETIC] BTC above threshold?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-12-31T23:59:00Z",
+          "active": true,
+          "probability": 0.52,
+          "probability_basis": "yes_midpoint",
+          "yes_bid": 0.51,
+          "yes_ask": 0.53,
+          "volume_24h": 9000.0,
+          "volume_total": 125000.0,
+          "volume_unit": "contracts",
+          "liquidity_usd": null,
+          "rules": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+          "url": "",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": "DEMO"
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 89.98,
+        "evidence": {
+          "e_probability": {
+            "value": 0.52,
+            "basis": "yes_midpoint",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": 9000.0,
+            "unit": "contracts",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.020000000000000018,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": 0.13,
+            "unit": "probability",
+            "elapsed_hours": 1.0,
+            "baseline_observed_at": "2026-10-28T07:00:00+00:00",
+            "baseline_probability": 0.39,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.52,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_change_24h": {
+            "value": 0.128,
+            "unit": "probability",
+            "elapsed_hours": 24.0,
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "baseline_probability": 0.392,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.52,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_ratio": {
+            "value": 6.0,
+            "unit": "ratio",
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "note": "Ratio of rolling-24h volumes, not interval traded flow."
+          },
+          "e_robust_z": {
+            "value": 26.0,
+            "baseline_moves": 24,
+            "median_rate": 0.0,
+            "mad": 0.0020000000000000018,
+            "scale_floor": 0.005,
+            "unit": "robust_standardized_hourly_move"
+          },
+          "e_priority": {
+            "value": 89.98,
+            "activity_component": 0.7909,
+            "entropy_component": 0.9988,
+            "quote_component": 0.8667,
+            "signal_component": 1,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": [
+          {
+            "kind": "probability_jump_1h",
+            "severity": "high",
+            "evidence_ids": [
+              "e_change_1h"
+            ],
+            "description": "YES changed +13.00 pp over 1.00h."
+          },
+          {
+            "kind": "probability_jump_24h",
+            "severity": "high",
+            "evidence_ids": [
+              "e_change_24h"
+            ],
+            "description": "YES changed +12.80 pp over 24.00h."
+          },
+          {
+            "kind": "rolling_activity_surge",
+            "severity": "medium",
+            "evidence_ids": [
+              "e_volume_ratio"
+            ],
+            "description": "Rolling-24h volume is 6.00x its day-ago level."
+          },
+          {
+            "kind": "unusual_hourly_move",
+            "severity": "high",
+            "evidence_ids": [
+              "e_robust_z"
+            ],
+            "description": "Hourly move robust z=26.00; 24 prior moves."
+          }
+        ]
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "YES changed +13.00 pp over 1.00h.",
+            "YES changed +12.80 pp over 24.00h.",
+            "Rolling-24h volume is 6.00x its day-ago level.",
+            "Hourly move robust z=26.00; 24 prior moves."
+          ],
+          "evidence_ids": [
+            "e_change_1h",
+            "e_change_24h",
+            "e_robust_z",
+            "e_volume_ratio"
+          ],
+          "unknowns": []
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "investigate",
+          "priority": "high",
+          "summary": "Prioritize human review. YES changed +13.00 pp over 1.00h. YES changed +12.80 pp over 24.00h. Rolling-24h volume is 6.00x its day-ago level. Hourly move robust z=26.00; 24 prior moves.",
+          "evidence_ids": [
+            "e_change_1h",
+            "e_change_24h",
+            "e_robust_z",
+            "e_volume_ratio",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_change_1h",
+              "value": 0.13,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_change_24h",
+              "value": 0.128,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_robust_z",
+              "value": 26.0,
+              "unit": "robust_standardized_hourly_move"
+            },
+            {
+              "evidence_id": "e_volume_ratio",
+              "value": 6.0,
+              "unit": "ratio"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.020000000000000018,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 89.98,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.05,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "6e798c917ad5d4d01a8595dbd1f247ba9cbb121d1b933f99f5ed88ea075b82ee",
+          "quantitative_claims_checked": 6,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": 0.392,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": 0.39,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": 0.52,
+          "probability_basis": "yes_midpoint"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "DEMO-POLY-RATES",
+          "title": "[SYNTHETIC] Rate cut at next meeting?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-12-31T23:59:00Z",
+          "active": true,
+          "probability": 0.54,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.53,
+          "yes_ask": 0.55,
+          "volume_24h": 24000.0,
+          "volume_total": 125000.0,
+          "volume_unit": "usd",
+          "liquidity_usd": 12000.0,
+          "rules": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+          "url": "",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 81.1,
+        "evidence": {
+          "e_probability": {
+            "value": 0.54,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": 24000.0,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.020000000000000018,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": 0.092,
+            "unit": "probability",
+            "elapsed_hours": 1.0,
+            "baseline_observed_at": "2026-10-28T07:00:00+00:00",
+            "baseline_probability": 0.448,
+            "origin": "local_snapshots",
+            "basis": "outcome_price_yes",
+            "current_probability": 0.54,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_change_24h": {
+            "value": 0.09,
+            "unit": "probability",
+            "elapsed_hours": 24.0,
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "baseline_probability": 0.45,
+            "origin": "local_snapshots",
+            "basis": "outcome_price_yes",
+            "current_probability": 0.54,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_ratio": {
+            "value": 1.0,
+            "unit": "ratio",
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "note": "Ratio of rolling-24h volumes, not interval traded flow."
+          },
+          "e_robust_z": {
+            "value": 18.0,
+            "baseline_moves": 24,
+            "median_rate": 0.0020000000000000018,
+            "mad": 0.0,
+            "scale_floor": 0.005,
+            "unit": "robust_standardized_hourly_move"
+          },
+          "e_priority": {
+            "value": 81.1,
+            "activity_component": 0.73,
+            "entropy_component": 0.9954,
+            "quote_component": 0.8667,
+            "signal_component": 0.6667,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": [
+          {
+            "kind": "probability_jump_1h",
+            "severity": "high",
+            "evidence_ids": [
+              "e_change_1h"
+            ],
+            "description": "YES changed +9.20 pp over 1.00h."
+          },
+          {
+            "kind": "unusual_hourly_move",
+            "severity": "high",
+            "evidence_ids": [
+              "e_robust_z"
+            ],
+            "description": "Hourly move robust z=18.00; 24 prior moves."
+          }
+        ]
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "YES changed +9.20 pp over 1.00h.",
+            "Hourly move robust z=18.00; 24 prior moves."
+          ],
+          "evidence_ids": [
+            "e_change_1h",
+            "e_robust_z"
+          ],
+          "unknowns": []
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "investigate",
+          "priority": "high",
+          "summary": "Prioritize human review. YES changed +9.20 pp over 1.00h. Hourly move robust z=18.00; 24 prior moves.",
+          "evidence_ids": [
+            "e_change_1h",
+            "e_robust_z",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_change_1h",
+              "value": 0.092,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_robust_z",
+              "value": 18.0,
+              "unit": "robust_standardized_hourly_move"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.020000000000000018,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 81.1,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.03,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "dfe5fd99aa6ab92beb7eb87df0304806b707a3ac8a1e36931905959212b25b7a",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": 0.45,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": 0.452,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": 0.448,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": 0.54,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "kalshi",
+          "market_id": "DEMO-KALSHI-CPI",
+          "title": "[SYNTHETIC] CPI exceeds 2.5%?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-12-31T23:59:00Z",
+          "active": true,
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint",
+          "yes_bid": 0.49,
+          "yes_ask": 0.51,
+          "volume_24h": 5000.0,
+          "volume_total": 125000.0,
+          "volume_unit": "contracts",
+          "liquidity_usd": null,
+          "rules": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+          "url": "",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": "DEMO"
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 68.23,
+        "evidence": {
+          "e_probability": {
+            "value": 0.5,
+            "basis": "yes_midpoint",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": 5000.0,
+            "unit": "contracts",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.020000000000000018,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 1.0,
+            "baseline_observed_at": "2026-10-28T07:00:00+00:00",
+            "baseline_probability": 0.5,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.5,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_change_24h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 24.0,
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "baseline_probability": 0.5,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.5,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_ratio": {
+            "value": 1.0,
+            "unit": "ratio",
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "note": "Ratio of rolling-24h volumes, not interval traded flow."
+          },
+          "e_robust_z": {
+            "value": 0.0,
+            "baseline_moves": 24,
+            "median_rate": 0.0,
+            "mad": 0.0,
+            "scale_floor": 0.005,
+            "unit": "robust_standardized_hourly_move"
+          },
+          "e_priority": {
+            "value": 68.23,
+            "activity_component": 0.7398,
+            "entropy_component": 1.0,
+            "quote_component": 0.8667,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": []
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.5,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 5000.0,
+              "unit": "contracts"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.020000000000000018,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 68.23,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "c2a794fd058e597c3251257c509f1653873a922e0807641f328b9f0cb3db3d3b",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "yes_midpoint"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "kalshi",
+          "market_id": "DEMO-KALSHI-CLOSED",
+          "title": "[SYNTHETIC] Expired event?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-10-26T00:00:00Z",
+          "active": true,
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint",
+          "yes_bid": 0.59,
+          "yes_ask": 0.61,
+          "volume_24h": 1000.0,
+          "volume_total": 125000.0,
+          "volume_unit": "contracts",
+          "liquidity_usd": null,
+          "rules": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+          "url": "",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": "DEMO"
+        },
+        "eligible": false,
+        "exclusion_reasons": [
+          "past_scheduled_close"
+        ],
+        "score": 62.61,
+        "evidence": {
+          "e_probability": {
+            "value": 0.6,
+            "basis": "yes_midpoint",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": 1000.0,
+            "unit": "contracts",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.020000000000000018,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: threshold in an imaginary release.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 1.0,
+            "baseline_observed_at": "2026-10-28T07:00:00+00:00",
+            "baseline_probability": 0.6,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.6,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_change_24h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 24.0,
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "baseline_probability": 0.6,
+            "origin": "local_snapshots",
+            "basis": "yes_midpoint",
+            "current_probability": 0.6,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_ratio": {
+            "value": 1.0,
+            "unit": "ratio",
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "note": "Ratio of rolling-24h volumes, not interval traded flow."
+          },
+          "e_robust_z": {
+            "value": 0.0,
+            "baseline_moves": 24,
+            "median_rate": 0.0,
+            "mad": 0.0,
+            "scale_floor": 0.005,
+            "unit": "robust_standardized_hourly_move"
+          },
+          "e_priority": {
+            "value": 62.61,
+            "activity_component": 0.6001,
+            "entropy_component": 0.971,
+            "quote_component": 0.8667,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": []
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": false,
+          "blocks": [
+            "past_scheduled_close"
+          ],
+          "risks": [
+            "past_scheduled_close",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "abstain",
+          "priority": "low",
+          "summary": "Excluded by data-quality or market-quality gates: past_scheduled_close",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.6,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 1000.0,
+              "unit": "contracts"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.020000000000000018,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 62.61,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "past_scheduled_close",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "e0d72330d4628cf4ff82f683eecdda339adac78a635ca2705aca8a9e51e701d1",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": 0.6,
+          "probability_basis": "yes_midpoint"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "DEMO-POLY-WIDE",
+          "title": "[SYNTHETIC] Growth exceeds 3%?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-12-31T23:59:00Z",
+          "active": true,
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.35,
+          "yes_ask": 0.65,
+          "volume_24h": 5000.0,
+          "volume_total": 125000.0,
+          "volume_unit": "usd",
+          "liquidity_usd": 500.0,
+          "rules": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+          "url": "",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": false,
+        "exclusion_reasons": [
+          "wide_spread"
+        ],
+        "score": 46.58,
+        "evidence": {
+          "e_probability": {
+            "value": 0.5,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": 5000.0,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.30000000000000004,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 1.0,
+            "baseline_observed_at": "2026-10-28T07:00:00+00:00",
+            "baseline_probability": 0.5,
+            "origin": "local_snapshots",
+            "basis": "outcome_price_yes",
+            "current_probability": 0.5,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_change_24h": {
+            "value": 0.0,
+            "unit": "probability",
+            "elapsed_hours": 24.0,
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "baseline_probability": 0.5,
+            "origin": "local_snapshots",
+            "basis": "outcome_price_yes",
+            "current_probability": 0.5,
+            "current_event_time": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_ratio": {
+            "value": 1.0,
+            "unit": "ratio",
+            "baseline_observed_at": "2026-10-27T08:00:00+00:00",
+            "note": "Ratio of rolling-24h volumes, not interval traded flow."
+          },
+          "e_robust_z": {
+            "value": 0.0,
+            "baseline_moves": 24,
+            "median_rate": 0.0,
+            "mad": 0.0,
+            "scale_floor": 0.005,
+            "unit": "robust_standardized_hourly_move"
+          },
+          "e_priority": {
+            "value": 46.58,
+            "activity_component": 0.6165,
+            "entropy_component": 1.0,
+            "quote_component": 0,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": [
+          {
+            "kind": "wide_spread",
+            "severity": "high",
+            "evidence_ids": [
+              "e_spread"
+            ],
+            "description": "YES spread 30.0% exceeds 8.0%."
+          }
+        ]
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_spread"
+          ],
+          "unknowns": []
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": false,
+          "blocks": [
+            "wide_spread"
+          ],
+          "risks": [
+            "wide_spread",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "abstain",
+          "priority": "low",
+          "summary": "Excluded by data-quality or market-quality gates: wide_spread",
+          "evidence_ids": [
+            "e_spread",
+            "e_quality",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_spread",
+              "value": 0.30000000000000004,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 46.58,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "wide_spread",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "11ef7524ed68b1801e841edb4e2496f7dd9e06416d5137c2024af2e8006ea05f",
+          "quantitative_claims_checked": 2,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": 0.5,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "DEMO-POLY-MISSING",
+          "title": "[SYNTHETIC] New unpriced event?",
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "source_updated_at": "2026-10-28T08:00:00+00:00",
+          "close_time": "2026-12-31T23:59:00Z",
+          "active": true,
+          "probability": null,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": null,
+          "yes_ask": null,
+          "volume_24h": null,
+          "volume_total": 125000.0,
+          "volume_unit": "usd",
+          "liquidity_usd": null,
+          "rules": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+          "url": "",
+          "issues": [
+            "missing_or_invalid_probability"
+          ],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": false,
+        "exclusion_reasons": [
+          "missing_probability",
+          "insufficient_24h_activity",
+          "missing_two_sided_quote"
+        ],
+        "score": 0.0,
+        "evidence": {
+          "e_probability": {
+            "value": null,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:00:00+00:00"
+          },
+          "e_volume_24h": {
+            "value": null,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": null,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [
+              "missing_or_invalid_probability"
+            ],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:00:00+00:00",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 0.0,
+            "activity_component": 0.0,
+            "entropy_component": 0,
+            "quote_component": 0,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": false,
+          "blocks": [
+            "missing_probability",
+            "insufficient_24h_activity",
+            "missing_two_sided_quote"
+          ],
+          "risks": [
+            "missing_probability",
+            "insufficient_24h_activity",
+            "missing_two_sided_quote",
+            "missing_or_invalid_probability",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "abstain",
+          "priority": "low",
+          "summary": "Excluded by data-quality or market-quality gates: missing_probability, insufficient_24h_activity, missing_two_sided_quote",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_priority",
+              "value": 0.0,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "missing_probability",
+            "insufficient_24h_activity",
+            "missing_two_sided_quote",
+            "missing_or_invalid_probability",
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "55cc8944c8c6a41b1f3d9cacda1b01e0b1b3e89e8d48068b44c015460f8cdf3b",
+          "quantitative_claims_checked": 1,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-27T07:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T08:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T09:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T10:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T11:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T12:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T13:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T15:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T16:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T17:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T18:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T19:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T20:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T21:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T22:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-27T23:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T00:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T01:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T02:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T03:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T04:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T05:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T06:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T07:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        },
+        {
+          "observed_at": "2026-10-28T08:00:00+00:00",
+          "probability": null,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    }
+  ]
+}

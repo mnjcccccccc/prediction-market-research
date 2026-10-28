@@ -1,0 +1,889 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction Market Research | ARTi Challenge</title><style>
+    :root{--ink:#202b29;--green:#225f50;--muted:#67736f;--line:#dce3df;--paper:#f5f7f3}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,sans-serif}
+    main{max-width:1120px;margin:auto;padding:42px 32px}header{border-top:4px solid var(--green);padding-top:24px}
+    .eyebrow,.venue,small{font-size:11px;letter-spacing:.12em;font-weight:700;color:var(--green)}
+    h1{font-size:clamp(32px,5vw,58px);line-height:1.12;letter-spacing:-.045em;margin:18px 0}
+    h1 span{color:var(--green)}.intro{max-width:710px;color:var(--muted);font-size:16px}
+    .meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:22px 0}
+    .mode{background:#e4ecdf;padding:5px 12px;font-size:11px;font-weight:750;letter-spacing:.06em;border-radius:3px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff;margin:28px 0}
+    .metric{padding:18px 22px;border-right:1px solid var(--line)}.metric:last-child{border:0}
+    .metric strong{display:block;font-size:32px;line-height:1.3}.metric span{color:var(--muted);font-size:12px}
+    .toolbar{display:flex;gap:12px;margin:24px 0 12px}input,select{font:inherit;padding:10px 12px;border:1px solid #c7d2cb;border-radius:4px;background:#fff;color:var(--ink)}
+    input{flex:1;min-width:130px}.market{border:1px solid var(--line);background:white;margin:14px 0;padding:25px;border-radius:6px}
+    .market-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}h2{font-size:19px;line-height:1.4;letter-spacing:-.015em;margin:5px 0}.id{font-size:11px;word-break:break-all}
+    .badge{font-size:10px;font-weight:800;letter-spacing:.09em;padding:4px 9px;border-radius:3px;white-space:nowrap}
+    .investigate{background:#f7e8ca;color:#805817}.monitor{background:#e2eee8;color:#225f50}.abstain{background:#eceeec;color:#68706d}
+    .numbers{display:grid;grid-template-columns:1fr 1fr 1.4fr;margin-top:18px;gap:20px}.numbers small{display:block;color:var(--muted);font-size:10px}
+    .numbers strong{font-size:29px;font-weight:650;letter-spacing:-.035em}.numbers .volume{font-size:23px}em{font-size:13px;font-style:normal;color:var(--muted);margin-left:4px}
+    .changes{font-size:12px;color:var(--green);font-family:ui-monospace,monospace}.muted{color:var(--muted)}
+    details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summary{cursor:pointer;color:var(--green);font-size:13px;font-weight:600}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}h3{font-size:13px}li{margin:6px 0;font-size:13px}
+    pre{background:#f2f5f1;padding:16px;overflow:auto;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:4px}
+    svg{max-width:740px;width:100%;margin-top:16px}svg text{font-size:10px;fill:#67736f}.grid{stroke:#dce3df;stroke-dasharray:3 3}
+    a{color:var(--green)}footer{padding:28px 0;color:var(--muted);font-size:12px}.empty{display:none;color:var(--muted);padding:30px;text-align:center}
+    @media(max-width:650px){main{padding:24px 14px}.metrics{grid-template-columns:1fr 1fr}.metric{border-bottom:1px solid var(--line)}.market{padding:18px}.toolbar{flex-wrap:wrap}.toolbar input{flex-basis:100%}.market-top{gap:8px}.numbers{grid-template-columns:1fr 1fr}.numbers>div:last-child{grid-column:span 2}.detail-grid{grid-template-columns:1fr}.meta{gap:8px}h2{font-size:17px}}
+    </style></head><body><main><header>
+    <div class="eyebrow">ARTi ENGINEERING CHALLENGE / RESEARCH PIPELINE</div>
+    <h1>Prediction markets.<br><span>Evidence before judgment.</span></h1>
+    <p class="intro">Public market data, time-matched probability changes and a risk-reviewed research queue.
+    Every decision traces back to explicit evidence. Open a market card to inspect its history.</p>
+    <div class="meta"><span class="mode">SYNTHETIC DEMO · NOT LIVE DATA</span><span class="muted">As of 2026-10-28T08:00:00+00:00</span></div></header>
+    <section class="metrics" aria-label="Research queue statistics">
+    <div class="metric"><strong>6</strong><span>reported markets</span></div>
+    <div class="metric"><strong>2</strong><span>investigate</span></div>
+    <div class="metric"><strong>1</strong><span>monitor</span></div>
+    <div class="metric"><strong>3</strong><span>abstain / excluded</span></div></section>
+    <div class="toolbar"><input id="search" aria-label="Search market title" placeholder="Search market title or ID…">
+    <select id="source" aria-label="Filter venue"><option value="">All venues</option><option>polymarket</option><option>kalshi</option></select>
+    <select id="action" aria-label="Filter decision"><option value="">All decisions</option><option>investigate</option><option>monitor</option><option>abstain</option></select></div>
+    <p class="muted" style="font-size:12px">Sorted by eligibility, then research priority. Volume retains each venue’s native unit.</p>
+    <section id="markets"><article class="market" data-source="kalshi" data-action="investigate">
+          <div class="market-top"><div><span class="venue">KALSHI</span>
+          <h2>[SYNTHETIC] BTC above threshold?</h2><span class="muted id">DEMO-KALSHI-CRYPTO</span></div>
+          <span class="badge investigate">INVESTIGATE</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>52.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>90.0<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">9,000 contracts</strong></div></div>
+          <p class="changes">1h: +13.00 pp (1.00h actual) · 24h: +12.80 pp (24.00h actual)</p>
+          <p>Prioritize human review. YES changed +13.00 pp over 1.00h. YES changed +12.80 pp over 24.00h. Rolling-24h volume is 6.00x its day-ago level. Hourly move robust z=26.00; 24 prior moves.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · yes_midpoint</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,86.00 66.40,85.80 92.80,86.00 119.20,85.80 145.60,86.00 172.00,85.80 198.40,86.00 224.80,85.80 251.20,86.00 277.60,85.80 304.00,86.00 330.40,85.80 356.80,86.00 383.20,85.80 409.60,86.00 436.00,85.80 462.40,86.00 488.80,85.80 515.20,86.00 541.60,85.80 568.00,86.00 594.40,85.80 620.80,86.00 647.20,85.80 673.60,86.00 700.00,73.00" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-27 07:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>YES changed +13.00 pp over 1.00h.</li><li>YES changed +12.80 pp over 24.00h.</li><li>Rolling-24h volume is 6.00x its day-ago level.</li><li>Hourly move robust z=26.00; 24 prior moves.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: yes_midpoint · Agent: rules
+          · 0.05 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;investigate&quot;,
+  &quot;priority&quot;: &quot;high&quot;,
+  &quot;summary&quot;: &quot;Prioritize human review. YES changed +13.00 pp over 1.00h. YES changed +12.80 pp over 24.00h. Rolling-24h volume is 6.00x its day-ago level. Hourly move robust z=26.00; 24 prior moves.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_change_1h&quot;,
+    &quot;e_change_24h&quot;,
+    &quot;e_robust_z&quot;,
+    &quot;e_volume_ratio&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_change_1h&quot;,
+      &quot;value&quot;: 0.13,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_change_24h&quot;,
+      &quot;value&quot;: 0.128,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_robust_z&quot;,
+      &quot;value&quot;: 26.0,
+      &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_ratio&quot;,
+      &quot;value&quot;: 6.0,
+      &quot;unit&quot;: &quot;ratio&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.020000000000000018,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 89.98,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.52,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 9000.0,
+    &quot;unit&quot;: &quot;contracts&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.020000000000000018,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: threshold in an imaginary release.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.13,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.39,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.52,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.128,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.392,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.52,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_ratio&quot;: {
+    &quot;value&quot;: 6.0,
+    &quot;unit&quot;: &quot;ratio&quot;,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Ratio of rolling-24h volumes, not interval traded flow.&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 26.0,
+    &quot;baseline_moves&quot;: 24,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0020000000000000018,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 89.98,
+    &quot;activity_component&quot;: 0.7909,
+    &quot;entropy_component&quot;: 0.9988,
+    &quot;quote_component&quot;: 0.8667,
+    &quot;signal_component&quot;: 1,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article>
+<article class="market" data-source="polymarket" data-action="investigate">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>[SYNTHETIC] Rate cut at next meeting?</h2><span class="muted id">DEMO-POLY-RATES</span></div>
+          <span class="badge investigate">INVESTIGATE</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>54.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>81.1<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">24,000 usd</strong></div></div>
+          <p class="changes">1h: +9.20 pp (1.00h actual) · 24h: +9.00 pp (24.00h actual)</p>
+          <p>Prioritize human review. YES changed +9.20 pp over 1.00h. Hourly move robust z=18.00; 24 prior moves.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,80.20 66.40,80.00 92.80,79.80 119.20,80.20 145.60,80.00 172.00,79.80 198.40,80.20 224.80,80.00 251.20,79.80 277.60,80.20 304.00,80.00 330.40,79.80 356.80,80.20 383.20,80.00 409.60,79.80 436.00,80.20 462.40,80.00 488.80,79.80 515.20,80.20 541.60,80.00 568.00,79.80 594.40,80.20 620.80,80.00 647.20,79.80 673.60,80.20 700.00,71.00" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-27 07:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>YES changed +9.20 pp over 1.00h.</li><li>Hourly move robust z=18.00; 24 prior moves.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.03 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;investigate&quot;,
+  &quot;priority&quot;: &quot;high&quot;,
+  &quot;summary&quot;: &quot;Prioritize human review. YES changed +9.20 pp over 1.00h. Hourly move robust z=18.00; 24 prior moves.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_change_1h&quot;,
+    &quot;e_robust_z&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_change_1h&quot;,
+      &quot;value&quot;: 0.092,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_robust_z&quot;,
+      &quot;value&quot;: 18.0,
+      &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.020000000000000018,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 81.1,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.54,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 24000.0,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.020000000000000018,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.092,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.448,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;current_probability&quot;: 0.54,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.09,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.45,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;current_probability&quot;: 0.54,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_ratio&quot;: {
+    &quot;value&quot;: 1.0,
+    &quot;unit&quot;: &quot;ratio&quot;,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Ratio of rolling-24h volumes, not interval traded flow.&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 18.0,
+    &quot;baseline_moves&quot;: 24,
+    &quot;median_rate&quot;: 0.0020000000000000018,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 81.1,
+    &quot;activity_component&quot;: 0.73,
+    &quot;entropy_component&quot;: 0.9954,
+    &quot;quote_component&quot;: 0.8667,
+    &quot;signal_component&quot;: 0.6667,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article>
+<article class="market" data-source="kalshi" data-action="monitor">
+          <div class="market-top"><div><span class="venue">KALSHI</span>
+          <h2>[SYNTHETIC] CPI exceeds 2.5%?</h2><span class="muted id">DEMO-KALSHI-CPI</span></div>
+          <span class="badge monitor">MONITOR</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>50.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>68.2<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">5,000 contracts</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual)</p>
+          <p>Eligible for monitoring; available evidence does not cross anomaly thresholds.</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · yes_midpoint</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,75.00 66.40,75.00 92.80,75.00 119.20,75.00 145.60,75.00 172.00,75.00 198.40,75.00 224.80,75.00 251.20,75.00 277.60,75.00 304.00,75.00 330.40,75.00 356.80,75.00 383.20,75.00 409.60,75.00 436.00,75.00 462.40,75.00 488.80,75.00 515.20,75.00 541.60,75.00 568.00,75.00 594.40,75.00 620.80,75.00 647.20,75.00 673.60,75.00 700.00,75.00" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-27 07:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: yes_midpoint · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;,
+  &quot;summary&quot;: &quot;Eligible for monitoring; available evidence does not cross anomaly thresholds.&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.5,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 5000.0,
+      &quot;unit&quot;: &quot;contracts&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.020000000000000018,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 68.23,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.5,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 5000.0,
+    &quot;unit&quot;: &quot;contracts&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.020000000000000018,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: threshold in an imaginary release.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.5,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.5,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.5,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.5,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_ratio&quot;: {
+    &quot;value&quot;: 1.0,
+    &quot;unit&quot;: &quot;ratio&quot;,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Ratio of rolling-24h volumes, not interval traded flow.&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 24,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 68.23,
+    &quot;activity_component&quot;: 0.7398,
+    &quot;entropy_component&quot;: 1.0,
+    &quot;quote_component&quot;: 0.8667,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article>
+<article class="market" data-source="kalshi" data-action="abstain">
+          <div class="market-top"><div><span class="venue">KALSHI</span>
+          <h2>[SYNTHETIC] Expired event?</h2><span class="muted id">DEMO-KALSHI-CLOSED</span></div>
+          <span class="badge abstain">ABSTAIN</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>60.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>62.6<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">1,000 contracts</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual)</p>
+          <p>Excluded by data-quality or market-quality gates: past_scheduled_close</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · yes_midpoint</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,65.00 66.40,65.00 92.80,65.00 119.20,65.00 145.60,65.00 172.00,65.00 198.40,65.00 224.80,65.00 251.20,65.00 277.60,65.00 304.00,65.00 330.40,65.00 356.80,65.00 383.20,65.00 409.60,65.00 436.00,65.00 462.40,65.00 488.80,65.00 515.20,65.00 541.60,65.00 568.00,65.00 594.40,65.00 620.80,65.00 647.20,65.00 673.60,65.00 700.00,65.00" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-27 07:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>past_scheduled_close</li><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: yes_midpoint · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;abstain&quot;,
+  &quot;priority&quot;: &quot;low&quot;,
+  &quot;summary&quot;: &quot;Excluded by data-quality or market-quality gates: past_scheduled_close&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_probability&quot;,
+      &quot;value&quot;: 0.6,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_volume_24h&quot;,
+      &quot;value&quot;: 1000.0,
+      &quot;unit&quot;: &quot;contracts&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.020000000000000018,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 62.61,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;past_scheduled_close&quot;,
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.6,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 1000.0,
+    &quot;unit&quot;: &quot;contracts&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.020000000000000018,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: threshold in an imaginary release.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.6,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.6,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.6,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;yes_midpoint&quot;,
+    &quot;current_probability&quot;: 0.6,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_ratio&quot;: {
+    &quot;value&quot;: 1.0,
+    &quot;unit&quot;: &quot;ratio&quot;,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Ratio of rolling-24h volumes, not interval traded flow.&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 24,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 62.61,
+    &quot;activity_component&quot;: 0.6001,
+    &quot;entropy_component&quot;: 0.971,
+    &quot;quote_component&quot;: 0.8667,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article>
+<article class="market" data-source="polymarket" data-action="abstain">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>[SYNTHETIC] Growth exceeds 3%?</h2><span class="muted id">DEMO-POLY-WIDE</span></div>
+          <span class="badge abstain">ABSTAIN</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>50.0%</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>46.6<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">5,000 usd</strong></div></div>
+          <p class="changes">1h: +0.00 pp (1.00h actual) · 24h: +0.00 pp (24.00h actual)</p>
+          <p>Excluded by data-quality or market-quality gates: wide_spread</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><svg viewBox="0 0 740 158" role="img" aria-label="Observed YES probability over time">
+      <line x1="40" y1="25" x2="700" y2="25" class="grid"/>
+      <line x1="40" y1="75" x2="700" y2="75" class="grid"/>
+      <line x1="40" y1="125" x2="700" y2="125" class="grid"/>
+      <text x="2" y="29">100%</text><text x="8" y="79">50%</text><text x="14" y="129">0%</text>
+      <polyline points="40.00,75.00 66.40,75.00 92.80,75.00 119.20,75.00 145.60,75.00 172.00,75.00 198.40,75.00 224.80,75.00 251.20,75.00 277.60,75.00 304.00,75.00 330.40,75.00 356.80,75.00 383.20,75.00 409.60,75.00 436.00,75.00 462.40,75.00 488.80,75.00 515.20,75.00 541.60,75.00 568.00,75.00 594.40,75.00 620.80,75.00 647.20,75.00 673.60,75.00 700.00,75.00" fill="none" stroke="#225f50" stroke-width="2.5"/>
+      <text x="40" y="150">10-27 07:00 UTC</text>
+      <text x="580" y="150">10-28 08:00 UTC</text></svg>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>YES spread 30.0% exceeds 8.0%.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>wide_spread</li><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;abstain&quot;,
+  &quot;priority&quot;: &quot;low&quot;,
+  &quot;summary&quot;: &quot;Excluded by data-quality or market-quality gates: wide_spread&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_spread&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_spread&quot;,
+      &quot;value&quot;: 0.30000000000000004,
+      &quot;unit&quot;: &quot;probability&quot;
+    },
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 46.58,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;wide_spread&quot;,
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: 0.5,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: 5000.0,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: 0.30000000000000004,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 1.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-28T07:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.5,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;current_probability&quot;: 0.5,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;unit&quot;: &quot;probability&quot;,
+    &quot;elapsed_hours&quot;: 24.0,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;baseline_probability&quot;: 0.5,
+    &quot;origin&quot;: &quot;local_snapshots&quot;,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;current_probability&quot;: 0.5,
+    &quot;current_event_time&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_ratio&quot;: {
+    &quot;value&quot;: 1.0,
+    &quot;unit&quot;: &quot;ratio&quot;,
+    &quot;baseline_observed_at&quot;: &quot;2026-10-27T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Ratio of rolling-24h volumes, not interval traded flow.&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;baseline_moves&quot;: 24,
+    &quot;median_rate&quot;: 0.0,
+    &quot;mad&quot;: 0.0,
+    &quot;scale_floor&quot;: 0.005,
+    &quot;unit&quot;: &quot;robust_standardized_hourly_move&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 46.58,
+    &quot;activity_component&quot;: 0.6165,
+    &quot;entropy_component&quot;: 1.0,
+    &quot;quote_component&quot;: 0,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article>
+<article class="market" data-source="polymarket" data-action="abstain">
+          <div class="market-top"><div><span class="venue">POLYMARKET</span>
+          <h2>[SYNTHETIC] New unpriced event?</h2><span class="muted id">DEMO-POLY-MISSING</span></div>
+          <span class="badge abstain">ABSTAIN</span></div>
+          <div class="numbers"><div><small>YES IMPLIED</small><strong>N/A</strong></div>
+          <div><small>RESEARCH PRIORITY</small><strong>0.0<em>/100</em></strong></div>
+          <div><small>ROLLING 24H VOLUME</small><strong class="volume">N/A</strong></div></div>
+          <p class="changes">1h: unavailable · 24h: unavailable</p>
+          <p>Excluded by data-quality or market-quality gates: missing_probability, insufficient_24h_activity, missing_two_sided_quote</p>
+          <details><summary>Evidence, risk review &amp; observed history</summary>
+          <p class="muted">Local snapshots · outcome_price_yes</p><p class="muted">Collect at least two valid snapshots to display history.</p>
+          <div class="detail-grid"><div><h3>Signals</h3><ul><li>No threshold crossed.</li></ul>
+          <h3>Next research steps</h3><ol><li>Read the exact resolution rules and verify against the official primary source.</li><li>Collect further time-stamped snapshots before interpreting a price move.</li><li>Inspect executable quotes and depth; research priority is not a trading edge.</li></ol></div><div><h3>Risk review</h3><ul><li>missing_probability</li><li>insufficient_24h_activity</li><li>missing_two_sided_quote</li><li>missing_or_invalid_probability</li><li>Market-implied price is not an independent fair-value estimate.</li><li>No news verification or order-book depth assessment is included.</li><li>Source metadata timestamp does not prove quote freshness.</li></ul></div></div>
+          <p class="muted">Observed: 2026-10-28T08:00:00+00:00<br>
+          Price basis: outcome_price_yes · Agent: rules
+          · 0.02 ms</p>
+          <h3>Structured decision</h3><pre>{
+  &quot;action&quot;: &quot;abstain&quot;,
+  &quot;priority&quot;: &quot;low&quot;,
+  &quot;summary&quot;: &quot;Excluded by data-quality or market-quality gates: missing_probability, insufficient_24h_activity, missing_two_sided_quote&quot;,
+  &quot;evidence_ids&quot;: [
+    &quot;e_probability&quot;,
+    &quot;e_volume_24h&quot;,
+    &quot;e_quality&quot;,
+    &quot;e_spread&quot;,
+    &quot;e_rules&quot;,
+    &quot;e_priority&quot;
+  ],
+  &quot;claims&quot;: [
+    {
+      &quot;evidence_id&quot;: &quot;e_priority&quot;,
+      &quot;value&quot;: 0.0,
+      &quot;unit&quot;: &quot;score&quot;
+    }
+  ],
+  &quot;risks&quot;: [
+    &quot;missing_probability&quot;,
+    &quot;insufficient_24h_activity&quot;,
+    &quot;missing_two_sided_quote&quot;,
+    &quot;missing_or_invalid_probability&quot;,
+    &quot;Market-implied price is not an independent fair-value estimate.&quot;,
+    &quot;No news verification or order-book depth assessment is included.&quot;,
+    &quot;Source metadata timestamp does not prove quote freshness.&quot;
+  ],
+  &quot;next_steps&quot;: [
+    &quot;Read the exact resolution rules and verify against the official primary source.&quot;,
+    &quot;Collect further time-stamped snapshots before interpreting a price move.&quot;,
+    &quot;Inspect executable quotes and depth; research priority is not a trading edge.&quot;
+  ]
+}</pre>
+          <h3>Evidence IDs</h3><pre>{
+  &quot;e_probability&quot;: {
+    &quot;value&quot;: null,
+    &quot;basis&quot;: &quot;outcome_price_yes&quot;,
+    &quot;observed_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;
+  },
+  &quot;e_volume_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;unit&quot;: &quot;usd&quot;,
+    &quot;window&quot;: &quot;rolling_24h&quot;
+  },
+  &quot;e_spread&quot;: {
+    &quot;value&quot;: null,
+    &quot;unit&quot;: &quot;probability&quot;
+  },
+  &quot;e_rules&quot;: {
+    &quot;text&quot;: &quot;SYNTHETIC TEST RULES: resolves YES if the stated threshold is met in the imaginary official release. No real event.&quot;,
+    &quot;truncated&quot;: false
+  },
+  &quot;e_quality&quot;: {
+    &quot;issues&quot;: [
+      &quot;missing_or_invalid_probability&quot;
+    ],
+    &quot;snapshot_age_minutes&quot;: 0.0,
+    &quot;source_updated_at&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+    &quot;note&quot;: &quot;Source updated time is metadata time, not a quote timestamp.&quot;
+  },
+  &quot;e_change_1h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_change_24h&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;no_time_and_basis_matched_baseline&quot;
+  },
+  &quot;e_robust_z&quot;: {
+    &quot;value&quot;: null,
+    &quot;reason&quot;: &quot;need_8_prior_comparable_hourly_moves&quot;
+  },
+  &quot;e_priority&quot;: {
+    &quot;value&quot;: 0.0,
+    &quot;activity_component&quot;: 0.0,
+    &quot;entropy_component&quot;: 0,
+    &quot;quote_component&quot;: 0,
+    &quot;signal_component&quot;: 0.0,
+    &quot;note&quot;: &quot;Heuristic research priority; volume scales differ by venue.&quot;
+  }
+}</pre><span class="muted">Synthetic event · no external market</span></details></article></section><p class="empty" id="empty">No markets match these filters.</p>
+    <details><summary>Collection coverage &amp; run metadata</summary><pre>{
+  &quot;as_of&quot;: &quot;2026-10-28T08:00:00+00:00&quot;,
+  &quot;data_mode&quot;: &quot;synthetic&quot;,
+  &quot;package_version&quot;: &quot;0.2.0&quot;,
+  &quot;coverage&quot;: {
+    &quot;note&quot;: &quot;Generated fixtures; not real markets, history, or LLM responses.&quot;,
+    &quot;snapshots&quot;: 156,
+    &quot;markets&quot;: 6,
+    &quot;network_calls&quot;: 0
+  },
+  &quot;config&quot;: {
+    &quot;min_polymarket_volume&quot;: 1000,
+    &quot;min_kalshi_volume&quot;: 100,
+    &quot;max_spread&quot;: 0.08,
+    &quot;min_probability&quot;: 0.02,
+    &quot;max_probability&quot;: 0.98,
+    &quot;jump_1h&quot;: 0.05,
+    &quot;jump_24h&quot;: 0.1,
+    &quot;rolling_volume_ratio&quot;: 3.0,
+    &quot;robust_z&quot;: 4.0,
+    &quot;max_snapshot_age_minutes&quot;: 30,
+    &quot;enable_fixed_jumps&quot;: true,
+    &quot;enable_robust_z&quot;: true,
+    &quot;enable_activity_surge&quot;: true
+  },
+  &quot;counts&quot;: {
+    &quot;processed&quot;: 6,
+    &quot;eligible&quot;: 3,
+    &quot;excluded&quot;: 3,
+    &quot;reported&quot;: 6
+  },
+  &quot;agent&quot;: {
+    &quot;requested_mode&quot;: &quot;rules&quot;,
+    &quot;max_model_calls&quot;: 0,
+    &quot;attempted_model_calls&quot;: 0,
+    &quot;failed_model_calls&quot;: 0
+  },
+  &quot;ranking&quot;: &quot;Eligibility first, then descending heuristic research priority; no return forecast.&quot;,
+  &quot;code_sha256&quot;: &quot;c0af90f4d41a6610b59c9ccf040f70c680c8881c9cc1b6122f9142bea20a5005&quot;,
+  &quot;input_sha256&quot;: &quot;e498dc9544a8d4532c0a3ce3636cf09318495f56b82a8d67c86829cb7e20fbd6&quot;,
+  &quot;runtime&quot;: {
+    &quot;python&quot;: &quot;3.12.7&quot;,
+    &quot;platform&quot;: &quot;win32&quot;
+  },
+  &quot;run_id&quot;: &quot;061c3e23ac089fcb4d96&quot;
+}</pre></details>
+    <footer>Research prototype · REST polling, not streaming · No external scripts or tracking.<br>
+    A signal indicates research attention, not causal explanation, fair value, or executable trading profit.<br>
+    Missing history stays unknown. Source metadata time is not a quote timestamp.</footer></main>
+    <script>
+    const fields=['search','source','action'].map(x=>document.getElementById(x));
+    function filter(){const [q,s,a]=fields.map(x=>x.value.toLowerCase());let n=0;
+      document.querySelectorAll('.market').forEach(el=>{const ok=(!q||el.querySelector('.market-top').textContent.toLowerCase().includes(q))&&(!s||el.dataset.source===s)&&(!a||el.dataset.action===a);el.hidden=!ok;if(ok)n++;});
+      document.getElementById('empty').style.display=n?'none':'block';}
+    fields.forEach(el=>el.addEventListener('input',filter));
+    </script></body></html>
