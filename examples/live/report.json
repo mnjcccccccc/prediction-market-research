@@ -1,0 +1,2135 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "as_of": "2026-10-28T08:14:10.807645+00:00",
+    "data_mode": "captured_api_replay",
+    "package_version": "0.2.0",
+    "coverage": {
+      "sources": [
+        {
+          "source": "polymarket",
+          "normalized_count": 175,
+          "skipped": 25,
+          "truncated": true,
+          "errors": []
+        },
+        {
+          "source": "kalshi",
+          "normalized_count": 121,
+          "skipped": 0,
+          "truncated": false,
+          "errors": []
+        }
+      ],
+      "kalshi_series": [
+        "KXFEDDECISION",
+        "KXCPI",
+        "KXGDP"
+      ],
+      "page_limit": 100,
+      "max_pages_per_scope": 2,
+      "note": "Polymarket sorted by rolling volume; Kalshi scoped watchlist. Not complete exchange coverage. Raw pages saved beside database."
+    },
+    "config": {
+      "min_polymarket_volume": 1000,
+      "min_kalshi_volume": 100,
+      "max_spread": 0.08,
+      "min_probability": 0.02,
+      "max_probability": 0.98,
+      "jump_1h": 0.05,
+      "jump_24h": 0.1,
+      "rolling_volume_ratio": 3.0,
+      "robust_z": 4.0,
+      "max_snapshot_age_minutes": 30,
+      "enable_fixed_jumps": true,
+      "enable_robust_z": true,
+      "enable_activity_surge": true
+    },
+    "counts": {
+      "processed": 296,
+      "eligible": 110,
+      "excluded": 186,
+      "reported": 12
+    },
+    "agent": {
+      "requested_mode": "rules",
+      "max_model_calls": 0,
+      "attempted_model_calls": 0,
+      "failed_model_calls": 0
+    },
+    "ranking": "Eligibility first, then descending heuristic research priority; no return forecast.",
+    "code_sha256": "c0af90f4d41a6610b59c9ccf040f70c680c8881c9cc1b6122f9142bea20a5005",
+    "input_sha256": "fbc0a2d878e110b1321128f310eb0f22927c6ce3379eda58138d381512f02ac0",
+    "runtime": {
+      "python": "3.12.7",
+      "platform": "win32"
+    },
+    "run_id": "feb088a993cf0007085f"
+  },
+  "markets": [
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "562793",
+          "title": "Will the Democratic Party control the Senate after the 2026 Midterm elections?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-04T04:59:00Z",
+          "active": true,
+          "probability": 0.665,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.66,
+          "yes_ask": 0.67,
+          "volume_24h": 424653.0354889996,
+          "volume_total": 5901229.130697999,
+          "volume_unit": "usd",
+          "liquidity_usd": 1206036.7144,
+          "rules": "This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+          "url": "https://polymarket.com/market/will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 74.5,
+        "evidence": {
+          "e_probability": {
+            "value": 0.665,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 424653.0354889996,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 74.5,
+            "activity_component": 0.938,
+            "entropy_component": 0.92,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.665,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 424653.0354889996,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 74.5,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.04,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "f46ee59bec8c22dbae7d53a4a90e51746cdcfd5f93f9872b17b69d2516a3a154",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.665,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "562828",
+          "title": "2026 Balance of Power: D Senate, D House",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-04T04:59:00Z",
+          "active": true,
+          "probability": 0.655,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.65,
+          "yes_ask": 0.66,
+          "volume_24h": 293897.048222,
+          "volume_total": 8766607.342341002,
+          "volume_unit": "usd",
+          "liquidity_usd": 2764488.1294,
+          "rules": "This market will resolve according to the party that wins control of the United States Senate and the party that wins control of the United States House of Representatives in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nA party wins control of the United States House of Representatives if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the chamber will be deemed controlled by the party with which the first elected Speaker of the House of the Congress that convenes after the 2026 midterm election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chambers.\n\nFor determining Senate control, all regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Vacant Senate seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat. For determining House control, all House elections in the 2026 United States midterm election that elect voting members and determine representation in the upcoming 120th Congress are included. Where a Senate or House seat is decided by a runoff, the runoff result will determine attribution of that seat, even if it takes place after November 2026.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected. \n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate and House members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate or House elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+          "url": "https://polymarket.com/market/2026-balance-of-power-d-senate-d-house-949",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 73.8,
+        "evidence": {
+          "e_probability": {
+            "value": 0.655,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 293897.048222,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve according to the party that wins control of the United States Senate and the party that wins control of the United States House of Representatives in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nA party wins control of the United States House of Representatives if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the chamber will be deemed controlled by the party with which the first elected Speaker of the House of the Congress that convenes after the 2026 midterm election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chambers.\n\nFor determining Senate control, all regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Vacant Senate seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat. For determining House control, all House elections in the 2026 United States midterm election that elect voting members and determine representation in the upcoming 120th Congress are included. Where a Senate or House seat is decided by a runoff, the runoff result will determine attribution of that seat, even if it takes place after November 2026.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected. \n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate and House members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate or House elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 73.8,
+            "activity_component": 0.9114,
+            "entropy_component": 0.9295,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.655,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 293897.048222,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 73.8,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "dc86489f712d19fc55178c505dfea1fc89cd30e7416f7701d8738453acbfdad3",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.655,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "562794",
+          "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-04T04:59:00Z",
+          "active": true,
+          "probability": 0.335,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.33,
+          "yes_ask": 0.34,
+          "volume_24h": 303515.50057200005,
+          "volume_total": 4249118.1392789995,
+          "volume_unit": "usd",
+          "liquidity_usd": 1179405.2056,
+          "rules": "This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+          "url": "https://polymarket.com/market/will-the-republican-party-control-the-senate-after-the-2026-midterm-elections",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 73.64,
+        "evidence": {
+          "e_probability": {
+            "value": 0.335,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 303515.50057200005,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve according to the party that wins control of the United States Senate in the 2026 United States midterm election.\n\nA party wins control of the United States Senate if it wins a majority of the chamber’s voting seats. If no party wins a majority of voting seats, the party that wins control of the chamber is the party that wins half of the voting seats and holds the Vice Presidency. If the outcome remains ambiguous after applying the above criteria, the chamber will be deemed controlled by the party with which the first selected President Pro Tempore of the Congress that convenes after the specified election is affiliated.\n\nThe following rules govern the counting of seats for determining which party wins control of the chamber.\n\nAll regular and special Senate elections that determine representation in the upcoming 120th Congress and are scheduled to take place in November 2026 as of October 31, 2026 are included. Runoffs for qualifying elections will determine attribution of the relevant seat, even if they take place after November 2026. Vacant seats for which no election or special election to fill the seat is scheduled to take place in November 2026 as of October 31, 2026 will be treated as held by the party affiliation of the most recent member to hold that seat.\n\nFor seats contested in the specified election, seats are attributed to the party under which the member was elected. If a member-elect changes party affiliation, or vacates their seat, between election day and the formal organization of Congress, the seat is attributed to the party under which the member was elected.\n\nFor seats not contested in the specified election, seats are attributed to the party that holds the seat as of the date of the election. If a current sitting member of the U.S. Senate who is not up for election changes party affiliation or vacates their seat after the date of the election, the seat is attributed to the party under which the member was affiliated at the time of the election.\n\nSenate members elected as independents who formally caucus with, or, for newly elected members, who announce their intent to caucus with, a party are included in that party’s count. If the caucus decisions of members of the Senate elected as independents cannot be determined on the date of the election, this market may remain open until the earlier of (i) an announcement from the relevant members of their intents to caucus, or (ii) January 4th, 11:59 PM ET of the following calendar year. If no such announcement is made by January 4th, 11:59 PM ET of the following calendar year, the member will not count towards the seat count of any party.\n\nThe resolution sources for this market will be official information from relevant state electoral authorities, the United States Congress, and a consensus of credible reporting.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 73.64,
+            "activity_component": 0.9137,
+            "entropy_component": 0.92,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.335,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 303515.50057200005,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 73.64,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "208634e7904c5ad70ccce63f587dcb2cbf2ca29d67c6a4f44b7bc0d27f73b2ee",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.335,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "5713187",
+          "title": "Will AC Milan win on 2026-10-28?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-10-28T17:30:00Z",
+          "active": true,
+          "probability": 0.555,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.55,
+          "yes_ask": 0.56,
+          "volume_24h": 113650.82221300002,
+          "volume_total": 122975.714595,
+          "volume_unit": "usd",
+          "liquidity_usd": 219526.2291,
+          "rules": "In the upcoming game, scheduled for October 28, 2026\nIf AC Milan wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event's conclusion, this market will resolve 50-50, or to \"Draw\" where applicable.",
+          "url": "https://polymarket.com/market/sea-mil-bol-2026-10-28-mil",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 72.94,
+        "evidence": {
+          "e_probability": {
+            "value": 0.555,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 113650.82221300002,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "In the upcoming game, scheduled for October 28, 2026\nIf AC Milan wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event's conclusion, this market will resolve 50-50, or to \"Draw\" where applicable.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 72.94,
+            "activity_component": 0.8426,
+            "entropy_component": 0.9913,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.555,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 113650.82221300002,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 72.94,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "067970aa5d044758d520df8313da82b5f218261604e82304a8ad9307b9f66fef",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.555,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "3128886",
+          "title": "US announces end of Iranian blockade by December 31, 2026?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2027-01-01T04:59:00Z",
+          "active": true,
+          "probability": 0.3535,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.351,
+          "yes_ask": 0.356,
+          "volume_24h": 128512.54476399999,
+          "volume_total": 4292470.464608,
+          "volume_unit": "usd",
+          "liquidity_usd": 156149.06297,
+          "rules": "On July 13, 2026, Trump announced the United States would reinstate its naval blockade of Iran, targeting Iranian ships and customers.\n\nThis market will resolve to “Yes” if the United States government, or an authorized representative of the United States government, publicly and officially announces the end, termination, lifting, or suspension of the United States’ naval blockade on Iranian ships and ships of Iranian customers, between market creation and the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement qualifies if it communicates that the United States will generally cease blocking vessel traffic for Iranian ships and customers, including an announcement that the blockade will not take effect at all, even if some restrictions remain (for example, an imposition of fees). An announcement does not qualify if it reflects only a limited or partial change that stops short of a general end or suspension of the blockade, for example, an exemption for a specific vessel, cargo, or port.\n\nA qualifying announcement must be a declarative statement of the United States government’s present termination or suspension of the blockade, previously-unannounced prior termination or suspension of the blockade, or definitive decision to terminate or suspend the blockade.\n\nA qualifying announcement must clearly and unambiguously identify the end or suspension of the blockade. Statements that merely allude to, reference, or describe an end to the blockade, without clearly communicating it, do not qualify. The announcement need not use specific terminology or reference the end of a blockade by name; an announcement of a resumption of prior obligations, the maintenance of a status quo, or a return to a previously agreed baseline qualifies, provided the substantive policy of ending or suspending the blockade is clearly and unambiguously communicated.\n\nA qualifying announcement must be made through official channels, by an individual acting in an official capacity. Statements made incidentally or informally in a context not intended for official communication do not qualify.\n\nThe following do not qualify:\n\nAnonymous, unattributed, or leaked statements not confirmed as official;\nStatements by persons not authorized to speak for the United States government;\nThird-party speculation, analysis, or predictions that the United States government will announce or implement an end to the blockade;\nSatirical, fabricated, hacked, or impersonated communications; and\nStatements that describe a prospective, contingent, probable, or conditional end to the blockade rather than announcing a present and decided position.\n\nOnce a qualifying announcement is made, this market will resolve to “Yes” regardless of whether it is later reversed, or whether the blockade actually ends in practice.\n\nResolution will be based on official information from the United States government, including the President, the Department of Defense, the Department of State, and United States Central Command (CENTCOM), or the official representatives of the United States government.\n",
+          "url": "https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-december-31-2026-20260727171803489-375-949-645-919-269-157-255-857",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 72.56,
+        "evidence": {
+          "e_probability": {
+            "value": 0.3535,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 128512.54476399999,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.0050000000000000044,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "On July 13, 2026, Trump announced the United States would reinstate its naval blockade of Iran, targeting Iranian ships and customers.\n\nThis market will resolve to “Yes” if the United States government, or an authorized representative of the United States government, publicly and officially announces the end, termination, lifting, or suspension of the United States’ naval blockade on Iranian ships and ships of Iranian customers, between market creation and the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement qualifies if it communicates that the United States will generally cease blocking vessel traffic for Iranian ships and customers, including an announcement that the blockade will not take effect at all, even if some restrictions remain (for example, an imposition of fees). An announcement does not qualify if it reflects only a limited or partial change that stops short of a general end or suspension of the blockade, for example, an exemption for a specific vessel, cargo, or port.\n\nA qualifying announcement must be a declarative statement of the United States government’s present termination or suspension of the blockade, previously-unannounced prior termination or suspension of the blockade, or definitive decision to terminate or suspend the blockade.\n\nA qualifying announcement must clearly and unambiguously identify the end or suspension of the blockade. Statements that merely allude to, reference, or describe an end to the blockade, without clearly communicating it, do not qualify. The announcement need not use specific terminology or reference the end of a blockade by name; an announcement of a resumption of prior obligations, the maintenance of a status quo, or a return to a previously agreed baseline qualifies, provided the substantive policy of ending or suspending the blockade is clearly and unambiguously communicated.\n\nA qualifying announcement must be made through official channels, by an individual acting in an official capacity. Statements made incidentally or informally in a context not intended for official communication do not qualify.\n\nThe following do not qualify:\n\nAnonymous, unattributed, or leaked statements not confirmed as official;\nStatements by persons not authorized to speak for the United States government;\nThird-party speculation, analysis, or predictions that the United States government will announce or implement an end to the blockade;\nSatirical, fabricated, hacked, or impersonated communications; and\nStatements that describe a prospective, contingent, probable, or conditional end to the blockade rather than announcing a present and decided position.\n\nOnce a qualifying announcement is made, this market will resolve to “Yes” regardless of whether it is later reversed, or whether the blockade actually ends in practice.\n\nResolution will be based on official information from the United States government, including the President, the Department of Defense, the Department of State, and United States Central Command (CENTCOM), or the official representatives of the United States government.\n",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 72.56,
+            "activity_component": 0.8515,
+            "entropy_component": 0.9372,
+            "quote_component": 0.9667,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.3535,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 128512.54476399999,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.0050000000000000044,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 72.56,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "0be70fdd217b434770d199d5a16849119dd78a429336f88966a3e2e63f19798f",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.3535,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "679018",
+          "title": "Will Marine Le Pen win the 2027 French presidential election?",
+          "observed_at": "2026-10-28T08:14:10.782768+00:00",
+          "source_updated_at": "2026-10-28T08:12:01.982358Z",
+          "close_time": "2027-04-19T03:59:00Z",
+          "active": true,
+          "probability": 0.4305,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.43,
+          "yes_ask": 0.431,
+          "volume_24h": 54253.179513,
+          "volume_total": 4558824.568712001,
+          "volume_unit": "usd",
+          "liquidity_usd": 622484.15897,
+          "rules": "The next French presidential election is currently expected to be held around April 2027.  This market pertains to the outcome of the next French presidential election, regardless of whether it follows the scheduled end of the current term or is held earlier. \n\nThe President of France is elected via a two-round system; a candidate must secure over 50% of the vote to win outright in the first round. If no candidate achieves this, the top two contenders advance to a runoff.\n\nThis market will resolve according to the candidate who wins this election.\n\nThis market includes any potential second round. If, for any reason, the results of the election are not known by December 31, 2027, 11:59 PM ET, this market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the French Government, specifically the Ministry of the Interior (https://www.interieur.gouv.fr/).",
+          "url": "https://polymarket.com/market/will-marine-le-pen-win-the-2027-french-presidential-election",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 72.13,
+        "evidence": {
+          "e_probability": {
+            "value": 0.4305,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:10.782768+00:00"
+          },
+          "e_volume_24h": {
+            "value": 54253.179513,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.0010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "The next French presidential election is currently expected to be held around April 2027.  This market pertains to the outcome of the next French presidential election, regardless of whether it follows the scheduled end of the current term or is held earlier. \n\nThe President of France is elected via a two-round system; a candidate must secure over 50% of the vote to win outright in the first round. If no candidate achieves this, the top two contenders advance to a runoff.\n\nThis market will resolve according to the candidate who wins this election.\n\nThis market includes any potential second round. If, for any reason, the results of the election are not known by December 31, 2027, 11:59 PM ET, this market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the French Government, specifically the Ministry of the Interior (https://www.interieur.gouv.fr/).",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:12:01.982358Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 72.13,
+            "activity_component": 0.7891,
+            "entropy_component": 0.986,
+            "quote_component": 0.9933,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.4305,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 54253.179513,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.0010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 72.13,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "fe7f8f8e17544de29b5ce74a0b6b7b01e51f425857d942526178c2a2f471b4ef",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:10.782768+00:00",
+          "probability": 0.4305,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "5713238",
+          "title": "Will Juventus FC win on 2026-10-28?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-10-28T19:45:00Z",
+          "active": true,
+          "probability": 0.535,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.53,
+          "yes_ask": 0.54,
+          "volume_24h": 77560.231685,
+          "volume_total": 77293.542012,
+          "volume_unit": "usd",
+          "liquidity_usd": 210087.3759,
+          "rules": "In the upcoming game, scheduled for October 28, 2026\nIf Juventus FC wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event's conclusion, this market will resolve 50-50, or to \"Draw\" where applicable.",
+          "url": "https://polymarket.com/market/sea-gen-juv-2026-10-28-juv",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 72.1,
+        "evidence": {
+          "e_probability": {
+            "value": 0.535,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 77560.231685,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "In the upcoming game, scheduled for October 28, 2026\nIf Juventus FC wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, data from Flashscore may be used; if Flashscore data is unavailable, data from Sofascore may be used; if neither is available, a consensus of credible reporting may be used instead. All markets will settle based on the official final result as recognized by the governing body or event organizers. Revisions to officially declared final scores made after market resolution will not be accounted for in determining the outcome. If no acceptable data is available within 24 hours of the event's conclusion, this market will resolve 50-50, or to \"Draw\" where applicable.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 72.1,
+            "activity_component": 0.8149,
+            "entropy_component": 0.9965,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.535,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 77560.231685,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 72.1,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "c9c2c299a0e50ddd4ad2bb8f56d5db3a03fd94d9850be19fa9c23113687db376",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.535,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "6051332",
+          "title": "Will Bitcoin reach $82,500 in October?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-01T04:00:00Z",
+          "active": true,
+          "probability": 0.605,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.6,
+          "yes_ask": 0.61,
+          "volume_24h": 93527.97545400001,
+          "volume_total": 223056.308101,
+          "volume_unit": "usd",
+          "liquidity_usd": 36226.6071,
+          "rules": "This market will resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT from the creation of this market through 11:59 PM ET on the last day of the month specified in the title has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No\". Price action before this market's creation will not be considered.\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
+          "url": "https://polymarket.com/market/will-bitcoin-reach-82pt5k-in-october-2026-from-october-22",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 71.86,
+        "evidence": {
+          "e_probability": {
+            "value": 0.605,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 93527.97545400001,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT from the creation of this market through 11:59 PM ET on the last day of the month specified in the title has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No\". Price action before this market's creation will not be considered.\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 71.86,
+            "activity_component": 0.8285,
+            "entropy_component": 0.968,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.605,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 93527.97545400001,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 71.86,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "54617eff7ed1b093135a423ae4c12bccaaef40e7a7f75e4bb9d9ab5bdaba198f",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.605,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "5190747",
+          "title": "US x Iran ceasefire continues through November 15?",
+          "observed_at": "2026-10-28T08:14:10.782768+00:00",
+          "source_updated_at": "2026-10-28T08:12:01.982358Z",
+          "close_time": "2026-11-16T04:59:00Z",
+          "active": true,
+          "probability": 0.505,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.5,
+          "yes_ask": 0.51,
+          "volume_24h": 64740.534700000004,
+          "volume_total": 617430.173562,
+          "volume_unit": "usd",
+          "liquidity_usd": 80867.3717,
+          "rules": "This market will resolve to “No” if the United States takes a qualifying military action against Iran by the specified date, 11:59 PM Iran Standard Time. Otherwise this market will resolve to “Yes.”\n\nA qualifying military action refers to an air strike or a surface-to-surface missile strike, initiated by the United States, that directly impacts Iran. An air strike includes bombs, air-to-surface missiles, and air-launched drones. A surface-to-surface missile strike includes one-way attack drones and surface-to-surface missiles such as cruise or ballistic missiles.\n\nThe following actions do not constitute a qualifying military action:\nMunitions destroyed or intercepted before impact;\nSurface-to-air missile strikes;\nSmall-arms fire;\nGround incursions;\nCyber operations;\nNaval gunfire and artillery fire;\nHowitzers, artillery pieces, mortars, and rocket artillery (e.g. MLRS systems);\nMinor surface-to-surface strikes, including short range loitering munitions, FPV drones, and ATGM strikes;\nAny threat, authorization, or announcement of force that has not been executed.\n\nAny munition that is intercepted or destroyed before impact does not constitute a qualifying military action. Debris, fragments, or any wreckage from intercepted munitions that land on Iran do not constitute a military action regardless of any damage incurred.\n\n“Iran” refers to the terrestrial territory of Iran, including its internal waters. Iran’s maritime territory and airspace are not encompassed. Where territorial borders are disputed, all territory claimed by and under the de facto control of Iran as of market creation will qualify.\n\nThe occurrence, attribution, and timing of a qualifying military action will be primarily determined based on a consensus of information available from the resolution sources. Where multiple sources conflict regarding the occurrence, attribution, or timing of a relevant military action, this market will remain open until the earlier of: i) the confirmation of the occurrence, attribution, and timing of the action based on a consensus of information available from the resolution sources or ii) 3 full calendar days (Iran Standard Time) from the date of the first credibly reported evidence of the action. If this period would extend past the end date, this market will remain open to allow for 3 full calendar days to pass. At the end of the third calendar day, if conflicting reports remain, the incident will be adjudicated based on the totality of information available from the resolution sources at that time. No single statement, denial, or presentation of evidence will govern where it is contradicted by the totality of information.\n\nThe resolution sources for this market will be official information from the governments and militaries of the United States and Iran and a consensus of credible reporting.",
+          "url": "https://polymarket.com/market/us-x-iran-ceasefire-continues-through-november-15",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 71.73,
+        "evidence": {
+          "e_probability": {
+            "value": 0.505,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:10.782768+00:00"
+          },
+          "e_volume_24h": {
+            "value": 64740.534700000004,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve to “No” if the United States takes a qualifying military action against Iran by the specified date, 11:59 PM Iran Standard Time. Otherwise this market will resolve to “Yes.”\n\nA qualifying military action refers to an air strike or a surface-to-surface missile strike, initiated by the United States, that directly impacts Iran. An air strike includes bombs, air-to-surface missiles, and air-launched drones. A surface-to-surface missile strike includes one-way attack drones and surface-to-surface missiles such as cruise or ballistic missiles.\n\nThe following actions do not constitute a qualifying military action:\nMunitions destroyed or intercepted before impact;\nSurface-to-air missile strikes;\nSmall-arms fire;\nGround incursions;\nCyber operations;\nNaval gunfire and artillery fire;\nHowitzers, artillery pieces, mortars, and rocket artillery (e.g. MLRS systems);\nMinor surface-to-surface strikes, including short range loitering munitions, FPV drones, and ATGM strikes;\nAny threat, authorization, or announcement of force that has not been executed.\n\nAny munition that is intercepted or destroyed before impact does not constitute a qualifying military action. Debris, fragments, or any wreckage from intercepted munitions that land on Iran do not constitute a military action regardless of any damage incurred.\n\n“Iran” refers to the terrestrial territory of Iran, including its internal waters. Iran’s maritime territory and airspace are not encompassed. Where territorial borders are disputed, all territory claimed by and under the de facto control of Iran as of market creation will qualify.\n\nThe occurrence, attribution, and timing of a qualifying military action will be primarily determined based on a consensus of information available from the resolution sources. Where multiple sources conflict regarding the occurrence, attribution, or timing of a relevant military action, this market will remain open until the earlier of: i) the confirmation of the occurrence, attribution, and timing of the action based on a consensus of information available from the resolution sources or ii) 3 full calendar days (Iran Standard Time) from the date of the first credibly reported evidence of the action. If this period would extend past the end date, this market will remain open to allow for 3 full calendar days to pass. At the end of the third calendar day, if conflicting reports remain, the incident will be adjudicated based on the totality of information available from the resolution sources at that time. No single statement, denial, or presentation of evidence will govern where it is contradicted by the totality of information.\n\nThe resolution sources for this market will be official information from the governments and militaries of the United States and Iran and a consensus of credible reporting.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.0,
+            "source_updated_at": "2026-10-28T08:12:01.982358Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 71.73,
+            "activity_component": 0.8019,
+            "entropy_component": 0.9999,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.505,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 64740.534700000004,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 71.73,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "9c5aa0380c71b02e160896d2bb2d34045e581fa0ef2a4871cb6d1d00035d985c",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:10.782768+00:00",
+          "probability": 0.505,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "630964",
+          "title": "Will the Republicans win the Texas Senate race in 2026?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-04T04:59:00Z",
+          "active": true,
+          "probability": 0.325,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.32,
+          "yes_ask": 0.33,
+          "volume_24h": 136070.552875,
+          "volume_total": 4147553.319701001,
+          "volume_unit": "usd",
+          "liquidity_usd": 468540.6975,
+          "rules": "This market will resolve according to the winner of the 2026 midterm Texas U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.",
+          "url": "https://polymarket.com/market/will-the-republicans-win-the-texas-senate-race-in-2026",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 71.36,
+        "evidence": {
+          "e_probability": {
+            "value": 0.325,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 136070.552875,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "This market will resolve according to the winner of the 2026 midterm Texas U.S. Senate election, inclusive of any run-offs.\n\nA candidate shall be considered to represent a party in the event that he or she is the nominee of the party in question. Candidates other than the Democratic or Republican nominee (e.g., Greens, Libertarian, independent) may be added at a later date.\n\nCandidates who run as independents will not be encompassed by the “Democrat” or “Republican” options regardless of any affiliation they may have with the party.\n\nThe candidates may be named in the contract for the convenience of traders. In the event that any named candidate is replaced as the nominee of their respective party prior to election day, the name in the contract will be updated and the market will resolve based on the replacement nominee of the party.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources call the race for the same candidate. If all three sources haven’t called the race in this state for the same candidate, this market will resolve based on the official certification.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 71.36,
+            "activity_component": 0.8556,
+            "entropy_component": 0.9097,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.325,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 136070.552875,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 71.36,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "508ec7ac6d0fa15203db6c50ecc3992160a30904fa8500768b7c0d4803192610",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.325,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "polymarket",
+          "market_id": "3580933",
+          "title": "Will Puma Shen win the next Taipei Mayor election?",
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "source_updated_at": "2026-10-28T08:08:02.947701Z",
+          "close_time": "2026-11-29T04:59:00Z",
+          "active": true,
+          "probability": 0.334,
+          "probability_basis": "outcome_price_yes",
+          "yes_bid": 0.33,
+          "yes_ask": 0.338,
+          "volume_24h": 107670.316391,
+          "volume_total": 1061427.656221,
+          "volume_unit": "usd",
+          "liquidity_usd": 142557.73418,
+          "rules": "Taiwanese local elections are scheduled to be held on November 28, 2026.\n\nThis market will resolve according to the candidate who becomes the next Mayor of Taipei as a result of this election.\n\nTemporary, interim, or placeholder Mayors appointed before the election will not be considered.\n\nIf the result of this election isn't known, or no candidate has been elected, by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the results of the elections as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Taiwanese government, specifically the Central Election Commission (https://db.cec.gov.tw/).",
+          "url": "https://polymarket.com/market/will-puma-shen-win-the-next-taipei-mayor-election-20260813125857102",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 71.26,
+        "evidence": {
+          "e_probability": {
+            "value": 0.334,
+            "basis": "outcome_price_yes",
+            "observed_at": "2026-10-28T08:14:08.700364+00:00"
+          },
+          "e_volume_24h": {
+            "value": 107670.316391,
+            "unit": "usd",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.008000000000000007,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "Taiwanese local elections are scheduled to be held on November 28, 2026.\n\nThis market will resolve according to the candidate who becomes the next Mayor of Taipei as a result of this election.\n\nTemporary, interim, or placeholder Mayors appointed before the election will not be considered.\n\nIf the result of this election isn't known, or no candidate has been elected, by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the results of the elections as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Taiwanese government, specifically the Central Election Commission (https://db.cec.gov.tw/).",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.035,
+            "source_updated_at": "2026-10-28T08:08:02.947701Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 71.26,
+            "activity_component": 0.8387,
+            "entropy_component": 0.919,
+            "quote_component": 0.9467,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.334,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 107670.316391,
+              "unit": "usd"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.008000000000000007,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 71.26,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "dfa8bbc4bf9664cfb1ef0b12721ff207484d9cb3791124c788a2924176dba404",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:08.700364+00:00",
+          "probability": 0.334,
+          "probability_basis": "outcome_price_yes"
+        }
+      ],
+      "native_history": null
+    },
+    {
+      "analysis": {
+        "market": {
+          "source": "kalshi",
+          "market_id": "KXFEDDECISION-26DEC-H0",
+          "title": "Will the Federal Reserve Hike rates by 0bps at their December 2026 meeting?",
+          "observed_at": "2026-10-28T08:14:07.689643+00:00",
+          "source_updated_at": "2026-10-27T18:37:20.014572Z",
+          "close_time": "2026-12-09T18:59:00Z",
+          "active": true,
+          "probability": 0.225,
+          "probability_basis": "yes_midpoint",
+          "yes_bid": 0.22,
+          "yes_ask": 0.23,
+          "volume_24h": 57794.73,
+          "volume_total": 497349.45,
+          "volume_unit": "contracts",
+          "liquidity_usd": null,
+          "rules": "If the Federal Reserve does a Hike of 0bps on December 09, 2026, then the market resolves to Yes.\nThe outcomes are mutually exclusive: at most one can resolve to Yes. For example, a 50-basis-point hike resolves “Hike   25 bps” to Yes and “Hike 25 bps” to No.\n\nIf the scheduled FOMC meeting is canceled and does not occur on its scheduled date, “Fed maintains rate” resolves to Yes and all other outcomes resolve to No.",
+          "url": "https://kalshi.com/markets/kxfeddecision-26dec",
+          "issues": [],
+          "yes_token_id": null,
+          "series_ticker": null
+        },
+        "eligible": true,
+        "exclusion_reasons": [],
+        "score": 71.23,
+        "evidence": {
+          "e_probability": {
+            "value": 0.225,
+            "basis": "yes_midpoint",
+            "observed_at": "2026-10-28T08:14:07.689643+00:00"
+          },
+          "e_volume_24h": {
+            "value": 57794.73,
+            "unit": "contracts",
+            "window": "rolling_24h"
+          },
+          "e_spread": {
+            "value": 0.010000000000000009,
+            "unit": "probability"
+          },
+          "e_rules": {
+            "text": "If the Federal Reserve does a Hike of 0bps on December 09, 2026, then the market resolves to Yes.\nThe outcomes are mutually exclusive: at most one can resolve to Yes. For example, a 50-basis-point hike resolves “Hike   25 bps” to Yes and “Hike 25 bps” to No.\n\nIf the scheduled FOMC meeting is canceled and does not occur on its scheduled date, “Fed maintains rate” resolves to Yes and all other outcomes resolve to No.",
+            "truncated": false
+          },
+          "e_quality": {
+            "issues": [],
+            "snapshot_age_minutes": 0.052,
+            "source_updated_at": "2026-10-27T18:37:20.014572Z",
+            "note": "Source updated time is metadata time, not a quote timestamp."
+          },
+          "e_change_1h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_change_24h": {
+            "value": null,
+            "reason": "no_time_and_basis_matched_baseline"
+          },
+          "e_robust_z": {
+            "value": null,
+            "reason": "need_8_prior_comparable_hourly_moves"
+          },
+          "e_priority": {
+            "value": 71.23,
+            "activity_component": 0.9524,
+            "entropy_component": 0.7692,
+            "quote_component": 0.9333,
+            "signal_component": 0.0,
+            "note": "Heuristic research priority; volume scales differ by venue."
+          }
+        },
+        "signals": []
+      },
+      "agent": {
+        "mode": "rules",
+        "analyst": {
+          "role": "market_analyst",
+          "findings": [
+            "No threshold-crossing signal in available observations."
+          ],
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h"
+          ],
+          "unknowns": [
+            "1h probability change unavailable",
+            "24h probability change unavailable"
+          ]
+        },
+        "risk_review": {
+          "role": "risk_reviewer",
+          "eligible": true,
+          "blocks": [],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "evidence_ids": [
+            "e_quality",
+            "e_spread",
+            "e_rules"
+          ]
+        },
+        "decision": {
+          "action": "monitor",
+          "priority": "normal",
+          "summary": "Eligible for monitoring; available evidence does not cross anomaly thresholds.",
+          "evidence_ids": [
+            "e_probability",
+            "e_volume_24h",
+            "e_quality",
+            "e_spread",
+            "e_rules",
+            "e_priority"
+          ],
+          "claims": [
+            {
+              "evidence_id": "e_probability",
+              "value": 0.225,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_volume_24h",
+              "value": 57794.73,
+              "unit": "contracts"
+            },
+            {
+              "evidence_id": "e_spread",
+              "value": 0.010000000000000009,
+              "unit": "probability"
+            },
+            {
+              "evidence_id": "e_priority",
+              "value": 71.23,
+              "unit": "score"
+            }
+          ],
+          "risks": [
+            "Market-implied price is not an independent fair-value estimate.",
+            "No news verification or order-book depth assessment is included.",
+            "Source metadata timestamp does not prove quote freshness."
+          ],
+          "next_steps": [
+            "Read the exact resolution rules and verify against the official primary source.",
+            "Collect further time-stamped snapshots before interpreting a price move.",
+            "Inspect executable quotes and depth; research priority is not a trading edge."
+          ]
+        },
+        "latency_ms": 0.02,
+        "usage": {},
+        "model": null,
+        "error": null,
+        "validation": {
+          "schema_sha256": "50831f8eca7775246e1f3ef4b76f4bc2bb3be6c23d061dee296e99bef5be5a6c",
+          "prompt_sha256": "e871cef042851b61652e1b700b0de0dc848ef9a260cead5da918ae5c53bb6b76",
+          "quantitative_claims_checked": 4,
+          "risk_gates_enforced": true,
+          "scope": "Shape, evidence IDs, action support and structured scalar values/units. Free-text semantic faithfulness still requires review."
+        }
+      },
+      "history": [
+        {
+          "observed_at": "2026-10-28T08:14:07.689643+00:00",
+          "probability": 0.225,
+          "probability_basis": "yes_midpoint"
+        }
+      ],
+      "native_history": null
+    }
+  ]
+}
